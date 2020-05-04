@@ -1,0 +1,109 @@
+\subsection{Why proof writing?}
+It's a natural question to ask. I mean for all your life, you haven't really been needing proofs. If you had a simple problem like 
+\begin{problem}
+If 20 students in a class scored an average of 7 out of 10 on a quiz, prove that if the scores were not all the same, at least one person scored above a 7.
+\end{problem}
+I mean it's obvious right? The only way there are no scores above 7 is if everybody scored the same---which is given by the problem to not be true. And therefore, if you had any score other than 7, if it is over, then the problem is satisfied, and if it is under, well there has to be a counter-score that balances the average out to 7. 
+
+And you might be super excited and hold your ground that you haven't proved anything, but you actually just did! Congrats. But sometimes, the solution isn't so obvious, and we require some more arguments. Let's make our first solution a little more rigorous.
+
+\begin{definition}
+The \textbf{pigeonhole principle} states that if $n$ items are put into $m$ containers, with $n > m$, then at least one container must contain more than one item.
+\end{definition}
+
+It sounds dumb right...but it's actually very powerful. We can actually visualize out first problem using this principle, by imagining we have 20 holes and 7 balls in each hole, where the balls represent each student's score. If we try to change someone's score by taking away $a$ balls, then those balls have to go somewhere else...which would make some student's score above 7. Pretty cool, right?
+
+And you would say no. This is super boring. Why do we care Michael. That's okay. When everybody begins proof writing, they feel like it's too much, too complicated, or just useless really. But the truth is, all of mathematics is based upon proofs. Literally nothing would exist without proofs. And plus, in many contests---Mathcounts, AIME, USA(J)MO, ARML, HMMT, PUMaC, Duke, Mandelbrot Team---just to name a few, you'll find yourself facing a page of proof-based problems to do. And for the real reason why we use proofs...well it's just a way to make a super strong and convincing argument. When you prove a statement, you are literally setting it into stone and letting the reader know that you have established a fact that cannot be changed.
+
+Before we continue, I'd like to point out that Richard Rusczyk and Mathew Crawford (two authors of the wonderful AoPS Books Series) have written an excellent article about ``How to Write a Solution'' available at \url{http://www.artofproblemsolving.com/articles/how-to-write-solution}. You should check it out.
+
+\subsection{Some Tips}
+Once again, the proof's job is to convince the reader that something is true. To do so, you'll have to walk the reader through your logic step by step, justifying all substantial steps. You may assume the reader knows the problem statement and also basic math. The reader will catch any mistakes or holes in your proof, and if the reader cannot follow your proof, that will be considered a hole. But, if you have a complete, correct solution, the reader will want to give you full points. Your job is to make it as easy as possible for the reader to verify that your solution is correct.
+Note that writing a proof is different from showing work in your high school math class. Proof-writing is both rigorous and in formal English, while showing work is not necessarily either.
+
+\subsubsection{The Basics}
+\begin{itemize}
+    \item Use first person plural (``we see'', ``our solution shows...''). It helps the reader get engaged more
+    \item Geometry proofs should be accompanied with a diagram if needed
+    \item If you need to define a new variable to make you (and your reader's) life easier, do it
+    \item If you use a well-known theorem, you don't have to prove it. Just reference it by some well-known name
+\end{itemize}
+
+\subsubsection{Formatting}
+\begin{itemize}
+    \item If there is an answer to the problem, write it down first, then explain how you got it
+    \item Try to \quad space \quad out \quad your \quad solution
+    \item If your proof is long (like you have to proof parts and then put it together), write ``lemmas''
+    \item Number equations that you write so you can reference them
+\end{itemize}
+
+\subsubsection{Remember...}
+\begin{itemize}
+    \item Really sloppy handwriting and weird formatting loses you points. As in you'll probably get a zero.
+    \item Answer the question...like read the question and try to give the problem what it wants
+    \item Partial credit is usually awarded so if you are a good way through a solution, know that you'll probably get something for it
+    \item \textbf{Don't make your reader feel stupid or have to guess} so don't say \textit{clearly this is true...}. Use something more polite like \textit{it is not difficult to show...}
+    \item As much as math is math. USE WORDS. Readers like to...well read.
+\end{itemize}
+
+\subsection{Techniques}
+Mathematical statements actually have names. Given a \textbf{conditional statement} ``If A, then B'', the following exist:
+\begin{itemize}
+    \item \textbf{Converse} If B, then A
+    \item \textbf{Inverse} If not A, then not B
+    \item \textbf{Contrapositive} If not B, then not A
+\end{itemize}
+
+It sounds weird that we just played around with permutations of the statement, but they actually have a significant. It turns out that the contrapositive is equivalent in logic to the conditional statement, which means if our original statement was true, then so is the contrapositive. The converse and inverse are also logically equivalent. If a statement is true for the conditional AND the converse statement, then it is said to be a \textbf{necessary and sufficient} statement, which means it is true forwards and backwards. These statements are also denoted as \textbf{if and only if}, or \textbf{iff} and are STRONG statements.
+
+\begin{problem}
+Write out all of the statements for ``If an animal is a dog, then it has a nose''
+\end{problem}
+
+\begin{problem}
+Write out all of the statements for ``If two angles are congruent, then they have the same measure''
+\end{problem}
+
+\subsection{Introductory Problems}
+The purpose of these problem is to introduce you to the proof writing style and teach you some tools and techniques you can use. We begin with one of the most famous proofs of all time---proving that the $\sqrt{2}$ is irrational (can't be written as a fraction of integers).
+
+\begin{problem}
+Show that $\sqrt{2}$ is irrational.
+\end{problem}
+
+Let's introduce the concept of contradiction.
+
+\begin{problem}
+Suppose we have a graph consisting of vertices and edges. Let $u$ be a vertex immediately prior to vertex $v$ along the shortest path from source $s$ to $v$. Give a logical explanation for why the shortest path from $s$ to $v$ must pass along a shortest path to $u$ before traversing one final edge from $u$ to $v$.
+\end{problem}
+
+And show why WLOG (without loss of generality) is so useful
+
+\begin{problem}
+Show that if $x+y+z=7$, and $x$, $y$, and $z$ are distinct positive integers, then one of these numbers must be $4$.
+\end{problem}
+
+\subsection{Problems}
+\begin{problem}
+Prove that if $\abs{x}+x>0$, then $x$ must be positive.
+\end{problem}
+
+\begin{problem}
+Show that there are infinitely many prime numbers
+\end{problem}
+
+\begin{problem}
+Prove that the product of two odd numbers is always odd
+\end{problem}
+
+\begin{problem}
+(\textit{MATHCOUNTS}) A drawer contains 8 grey socks, 5 white socks, and 10 black socks. If socks are randomly taken from the drawer without replacement, how many must be taken to be sure that 4 socks of the same color have been taken?
+\end{problem}
+
+\begin{problem}
+(\textit{HMMT}) Alice and Bob are playing a game of Token Tag, played on an $8\times8$ chessboard. At the beginning of the game, Bob places a token for each player somewhere on the board. After this, in every round, Alice moves her token, then Bob moves his token. If at any point in a round the two tokens are on the same square, Alice immediately wins. If Alice has not won by the end of 2012 rounds, then Bob wins.
+
+(a) Suppose that a token can legally move to any orthogonally adjacent square. Show that Bob has a winning strategy for this game.
+
+(b) Suppose instead that a token can legally move to any square which shares a vertex with the square it is currently on. Show that Alice has a winning strategy for this game.
+\end{problem}

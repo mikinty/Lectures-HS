@@ -1,0 +1,68 @@
+The purpose of this worksheet is to practice some fundamental number theory techniques. This worksheet also contains competition math problems that are harder than the typical methods that I have shown in class. Try your best to do them, but don't feel bad if you can't figure them out. The challenge problems will be marked by $^{\ast\ast\ast}$.
+
+\subsection{Last Digit}
+Find the last digit of the following:
+\begin{enumerate}
+    \item $3^3$
+    \item $13^3$
+    \item $283^3$
+    \item $238923^3$
+    \item $104793^{289432}$
+    \item $9^{373}$
+    \item $^{\ast\ast\ast}$ $7^{7^7}$
+\end{enumerate}
+
+\subsection{Remainders}
+\begin{enumerate}
+    \item Find the remainder when $239823+23723+865435+6546841+63543$ is divided by 11
+    \item Find the remainder when $12366060485 \times 121212128 \times 96604896367 \times 727296843$ is divided by 12
+    \item Find the remainder when $19^{8293}$ is divided by 20
+    \item Find the remainder of $9^{42}-5^{42}$ when it is divided by 7
+    \item $^{\ast\ast\ast}$ Find the remainder when $1^2+2^2+3^2+\cdots+99^2$ is divided by 9 (\textit{Hint: it is a long pattern})
+    \item Find the last two digits of $99^{2849}$ (\textit{Hint: When we look for the last digit, we take modulo 10...if we want the last two digits, what do we do?})
+    \item Find the remainder when $17+177+1777+\cdots+17777777777777777777$ is divided by 8
+    \item $^{\ast\ast\ast}$ Find the remainder when $10^{10}+10^{100}+10^{1000}+\cdots+10^{1000000000}$ is divided by 7. (\textit{Hint: try to use your first result from $10^{10}$ to help you with the rest. You have to play around with mods a bit to figure this one out})
+\end{enumerate}
+
+\subsection{Modular Systems}
+I didn't get to go over this in class, but most of the problems were worked with had simple modular equations, something like
+$$a \equiv 3 \pmod{7}.$$
+What if instead, we found ourselves dealing with this?
+$$4a \equiv 3 \pmod{7}$$
+At first you might be tempted to divide by 4, but what does a $\frac{3}{4}$ remainder mean? It doesn't actually mean anything, and instead, it can only be written as 
+$$4a \equiv 3\cdot4^{-1} \pmod{7},$$
+where $4^{-1}$ has a certain modulus $x$ in modulus 7, where 
+$$4\cdot x\equiv 1 \pmod{7}.$$
+If you stare at this equation long enough, you'll realize that $x=2$ works, and this is the equivalent \textit{inverse} of 4. Therefore, $4^{-1} \equiv 2 \pmod{7}$, and 
+$$a \equiv 3\cdot4^{-1} \equiv 3\cdot2 \equiv 6 \pmod{7}.$$
+There are lots of intricacies here about modulo inverses and all, but you are concerned with how to solve the problem. One way is just what I did above, set up the formal definition of an inverse. Another way is to keep on adding 10 until your right hand side is divisible by the coefficient on the left hand side. So in our case, 
+$$4a \equiv 3 \equiv 10 \equiv 17 \equiv 24 \pmod{7}.$$
+And now we can just divide through by 4, and get
+$$a\equiv 6 \pmod{7}.$$
+Be aware that division doesn't really exist in modular arithmetic, and what we do when we divide is actually governed by the following theorem:
+\begin{theorem}
+If we have a modular equation 
+$$an \equiv b \pmod{c},$$
+and we wish to divide by n, then the new equation is 
+$$a \equiv b/n \pmod{c/GCF(c, n)}$$
+\end{theorem}
+Notice that we have to divide our modulo by the GCF(c, n). Therefore, for 
+$$2n\equiv4 \pmod{10},$$
+after division, we arrive at the following result:
+$$n\equiv 2 \pmod{5}.$$
+\clearpage
+\subsubsection{Problems}
+\begin{enumerate}
+    \item What is the smallest positive integer that has a remainder of 2 when divided by 5 and a remainder of 6 when divided by 7?
+    \item Solve the following system:
+    \begin{align*}
+        a \equiv 3 \pmod{8} \\
+        a \equiv 5 \pmod{9}
+    \end{align*}
+    \item Mrs. Jackson baked a batch of cookies. If she makes bags of cookies with 3 cookies in each bag, 2 cookies are left over. If she makes bags with 5 cookies in a bag, no cookies are left over. If she makes bags with 8 cookies in each bag, 6 cookies are left over. What is the fewest number of cookies Mrs. Jackson could have baked? (\textit{Source: MATHCOUNTS State Team 2012 \#7})
+    \item $^{\ast\ast\ast}$Solve the following system:
+    \begin{align*}
+        4N \equiv 3 \pmod{7} \\
+        5N \equiv 7 \pmod{8}
+    \end{align*}
+\end{enumerate}

@@ -1,0 +1,132 @@
+\documentclass{book}
+
+\input{preamble}
+
+\title{Lectures from High School}
+\author{Michael You}
+\date{2013-2016}
+
+\begin{document}
+
+\maketitle
+
+\chapter*{Preface}
+This book contains a collection of lectures, mostly math, that I wrote and gave to math team, my Chinese school math class, classes I subbed in for, or even just for friends. My lectures are written not only to go along with my lecture, but to be read afterwards (I try to fit as much intermediate thinking as I can). Most lectures contain practice problems as well so the reader can apply new skills after learning them.
+
+This book is by no means a textbook of any sort, but rather just a collection of topics I gave lectures on. Feel free to jump around and read whatever topic you wish.
+
+\vspace{0.5in}
+\noindent Michael You
+\noindent December \nth{18}, 2016
+
+%\setcounter{tocdepth}{1}
+\tableofcontents
+
+\chapter{Basics}
+\section{Introduction to Algebra}
+\input{chap/introAlg}
+\newpage
+
+\section{Proof Writing}
+\input{chap/proofs}
+
+\chapter{Algebra}
+\section{Logarithms and Exponents}
+\input{chap/logExp}
+
+\section{Arithmetic and Geometric Sequences}
+\input{chap/arithGeo}
+
+\chapter{Number Theory}
+\section{Introduction to Modular Arithmetic}
+\input{chap/introMod}
+
+\chapter{Counting \& Probability}
+\section{Pascal's Triangle}
+\input{chap/pascal}
+\newpage
+\section{Counting Paths}
+\input{chap/countingPaths}
+\newpage
+\section{Counting Extended}
+\input{chap/countingPathsExt}
+\newpage
+\section{Sticks and Stones}
+\input{chap/sticks}
+\newpage
+\section{Recursion}
+\input{chap/recur}
+
+\chapter{Geometry}
+\section{Triangles}
+\input{chap/triangles}
+\newpage
+\section{Circles}
+\input{chap/circles}
+\newpage 
+\section{Areas}
+\input{chap/area}
+\newpage 
+\section{Mass Points}
+\input{chap/masp}
+\newpage 
+\section{3D Geometry}
+\input{chap/3d}
+
+\chapter{Applications}
+\section{Game Theory}
+\input{chap/game}
+
+\chapter{Chemistry}
+\section{Stoichiometry}
+\input{chap/stoich}
+\newpage
+\section{Gas Laws}
+\input{chap/gas}
+
+\chapter{Worksheets}
+\section*{Introduction}
+I wrote worksheets to accompany some of my lectures. I usually wrote them to supplement the lecture since I felt that students who wanted to get more out of the lecture could do these extra practice problems. I will reference the lectures in the worksheets as they appear in this chapter.
+
+\section{Number Theory}
+\input{chap/ntWS}
+\newpage
+
+\section{Logarithms and Exponents}
+\input{chap/logExpWS}
+\newpage
+
+\section{Counting Paths}
+\input{chap/countingPathsWS}
+\newpage
+
+\section{Counting Paths Extended}
+\input{chap/countingPathsExtWS}
+\newpage
+
+\section{Recursion}
+\input{chap/recurWS}
+\newpage
+
+\section{Introduction to Geometry}
+\input{chap/introGeoWS}
+\newpage
+\section{Game Theory in Action}
+\input{chap/gameWS}
+\newpage
+\chapter{A Potpourri of Problems}
+\section{Mega Review for 2014-15}
+\input{chap/mega}
+\newpage
+\section{Pi Day 3/14/16}
+\begin{enumerate}
+    \item Seven Kevins are trying to figure out how to place seven pies on a table, which has a $9\times 9$ grid marking as shown below:
+    \begin{center}
+    \begin{tikzpicture}[scale=0.50]
+    		\draw (0,0) grid (9,9);
+    \end{tikzpicture}
+    \end{center}
+    The Kevins will put the each of the seven pies into a square, but since they are picky, they will only be satisfied with the pie arrangement if no two pies share a row or column. How many arrangements satisfies this condition? (assume pies are indistinct)
+    \item Today, Samuel the Lamuel is feeling particularly charitable, and wants to cut his pie into some some pieces so he can share with his good folks. Given that a a pie is a 3-D object, and cuts are assumed to be straight (like a plane), what is the minimum number of cuts he needs to make in order to serve a crowd of 100 people?
+\end{enumerate}
+\end{document}

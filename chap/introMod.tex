@@ -1,0 +1,63 @@
+  We will start out by doing everything the ``non-mod'' way.
+			\subsubsection{Last Digit}
+				We can look for patterns as a start. \par
+				\begin{problem} What is the last digit of $2^{9}$? \end{problem} \vspace{0.2in}
+
+				\begin{problem} What is the last digit of $2^{4216}$? \end{problem} \vspace{0.2in}
+
+				\begin{problem} What are the last two digits of $7^{1385}$? \end{problem}\vspace{0.2in}
+
+			\subsubsection{Remainder}
+				Looks like we have some arithmetic to do. \par
+				\begin{problem} What is the remainder when $6182+1654941+78941+46$ is divided by 4?\end{problem}\vspace{0.5in}
+				\begin{problem} What is the remainder when $45 \times 283 \times 7$ is divided by 11?\end{problem}\vspace{0.5in}
+			\subsubsection{Remainder Conditions}
+				Let's begin by just listing out numbers that satisfy each condition for these problems. \par
+				\begin{problem} What is the smallest positive integer that has a remainder of 3 when divided by 5 and a remainder of 2 when divided by 7?\end{problem}\vspace{1in}
+
+				\begin{problem} What is the smallest positive integer that has a remainder of 2 when divided by 9, a remainder of 3 when divided by 7, and a remainder of 1 when divided by 5?\end{problem}\vspace{1in}
+
+				Beware though, sometimes you have to notice if the conditions are possible at all. \par
+				\begin{problem} What is the smallest positive integer that has a remainder of 3 when divided by 6 and a remainder of 2 when divided by 4? \end{problem}\vspace{0.5in}
+				\begin{problem} What is the smallest positive integer that has a remainder of 4 when divided by 9 and a remainder of 2 when divided by 3? \end{problem}\vspace{0.5in}
+				\clearpage
+		\subsection{Actual Modular Arithmetic}
+			Although this may seem like a fancy term, it is just another way of working with numbers. In mod, everything is represented as a remainder---the remainder can be positive or negative---and the sides of the ``equation'' (it's actually called a congruence statement) do not change when the modulus (the number in the parentheses) is added to both sides.
+			\subsubsection{Definitions}
+			A \textbf{modulus} is a system for counting using only the fixed set of integers $0, 1, 2,\ldots,m-1$. When working in this modulus of $m$ integers, we say we are working with the integers \textbf{modulo} $m$. \par
+			We define the $\equiv$ symbol to denote congruence. We say 
+			$$a \equiv b \Mod{m}$$
+			if and only if 
+			$$\frac{a-b}{m}$$
+			is an integer. Otherwise, $a \not\equiv b \Mod{m}$. \par
+			In more basic and plain English, what modular tells us is that numbers with equal remainders are congruent. We will see why this is important later on. There are lots of properties of modular arithmetic, but this lecture will briefly show them in the problems.
+			\begin{problem} Prove the divisibility rule for 2 (and 4 and 8)\end{problem} \vspace{1in}
+			\begin{problem} Prove the divisibility rule for 3 (and 9)\end{problem} \vspace{2in}
+			
+			\subsubsection{Modular Calculations}
+				\begin{problem} What is the remainder when $27+2748+1738+265$ is divided by 10? \end{problem}\vspace{0.5in}
+				\begin{problem} What is the remainder when $3 \times 37 \times 192 \times 43$ is divided by 11? \end{problem}\vspace{0.5in}
+				\begin{problem} What is $x$ if $x \equiv 293 \times 104 \times 1937 \times 7 \pmod{15}$ and $0 \leq x < 15$?\end{problem}\vspace{0.5in}
+			\subsubsection{Last Digit and Remainder}
+				\begin{problem} What is the last digit of $274928^{372836}$?\end{problem} \vspace{0.5in}
+				\begin{problem} What is the remainder when $595^{473828}$ is divided by 11?\end{problem}\vspace{0.5in}
+				\begin{problem} What is the remainder when $19^{348}$ is divided by 20?\end{problem}\vspace{0.5in}
+			\subsubsection{System of Modular Equations}
+				This is my way to solve systems of modular arithmetic (if you want a more ``official'' way, look up the Chinese Remainder Theorem or something similar). I will show one way to solve these types of problems without the CRT.\par
+				\begin{problem} What are all integers that have a remainder of 1 when divided by 2 and a remainder of 3 when divided by 5?\end{problem}
+				\begin{solution}
+				We first write our number, let's call it $n$, in a generic way.
+				$$n = 2a+1=5b+3$$
+				Now, we look at 
+				$$2a+1=5b+3,$$
+				and to make our lives easier, we take the entire equation in modulo 2 (in general, take the lowest modulo possible to make the numbers smaller),
+				$$b+1 \equiv 0+1 \Mod{2} \Rightarrow b\equiv0 \Mod{2}.$$
+				Therefore, we know that $b=2c$ for some integer $c$, and now we substitute back into our original expression with $b$:
+				$$5b+3 = 5(2c)+3 = 10c+3$$
+				and we can clearly see that our solutions are all $n$ such that $n\equiv3\Mod{10}$, or in English, all numbers that have a remainder of 3 when divided by 10.
+				\end{solution}
+				\begin{problem} What is the smallest positive integer that has a remainder of 2 when divided by 3, and 3 when divided by 4?\end{problem} \vspace{1in}
+				\begin{problem} What is the smallest positive integer that has a remainder of 2 when divided by 3, 3 when divided by 4, and 1 when divided by 5? (Hint: just apply our technique twice)\end{problem} \vspace{1in}
+				\begin{problem} What is the smallest positive integer that has a remainder of 1 when divided by 3, 2 when divided by 4, 3 when divided by 5 and 4 when divided by 6? \end{problem}\vspace{1in}
+				\begin{problem} What is the smallest positive integer that has a remainder of 2 when divided by 3, 2 when divided by 4, 2 when divided by 5 and 2 when divided by 6?\end{problem}\vspace{1in}
+				\begin{problem} What is the smallest positive integer that has a remainder of 3 when divided by 8, 1 when divided by 9, and 4 when divided by 11?\end{problem}

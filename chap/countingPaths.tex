@@ -1,0 +1,41 @@
+Often overlooked in counting as hard, counting paths is actually much easier than it seems...
+
+	\subsection{Just write it up}
+		\subsection{The Problem}
+			You need to get from one point of the grid to the other...how can you do it?
+			
+			\begin{problem} How many ways are there to get from the lower left hand corner of a 5 by 7 grid to the upper right hand corner by only using moves that are right or up?
+			\end{problem}
+			\vspace{1in}
+			\begin{problem} I will draw a wacky grid on the board---how many paths are there now?
+			\end{problem}
+			\vspace{1in}
+	\subsection{A Faster Way}			
+			Once we get large grids, the counting seems endless...there are way too many points. What if we just thought of going through the grid as finding the number of combinations of directions?
+			
+		\subsubsection{Combinations}
+			If you recall from previous units, we know how to arrange letters in a word:
+
+			\begin{problem} How many ways can I arrange the letters of ``HAWKS''? 
+			\end{problem}
+			\vspace{1in}
+			\begin{problem}How many ways can I arrange the letters of ``BOOKKEEPER''?
+			\end{problem}
+			\vspace{1in}			
+			\begin{problem} How many ways can I walk a 9 by 4 grid?
+			\end{problem}
+			\vspace{1in}
+			\begin{problem} What if now I have to pass through a certain point?
+			\end{problem}
+			\vspace{1in}
+	\subsection{Problems}
+		Many path counting problems are not just blatantly written out...test writers will try to hide them
+		
+		\begin{enumerate}
+			\item How many ways can I walk the 6x6 grid?\vspace{1in}
+			\item How many ways can I walk the 3x9 grid?\vspace{1in}
+			\item How many ways can I walk the 12x8 grid if I cannot go through the point (3, 5)? (the starting point is the origin (0,0)\vspace{1in}
+			\item How many ways can I walk a 3-D grid---it has dimensions 3x3x3?\vspace{1in}
+			\item How many ways can I walk along the surface of a 2x2x2 grid (I cannot go into the center)?\vspace{1in}
+			\item The Patriots and the Seahawks are going to fight a tough game tonight. Due to poor score tracking technology, the two teams can only score with touchdowns, so 6 points whenever a team scores. One analyst predicts the score will be 36-30, with the Patriots winning and never trailing the Seahawks. Another analyst predicts the score will be 42-24, with the Seahawks routing the Patriots, except this time the Seahawks never trail nor tie with the Patriots. How many ways can each of the scenarios happen, and what are their probabilities?
+		\end{enumerate}

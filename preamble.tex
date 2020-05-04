@@ -1,0 +1,71 @@
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{asymptote}
+\usepackage{bookmark}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{forest}
+\usepackage{gensymb}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{qtree}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage[version=4]{mhchem}
+\usepackage{microtype}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage[super]{nth}
+\usepackage{physics}
+\usepackage{setspace}
+\usepackage{siunitx}
+\usepackage{subfig}
+\usepackage{tabto}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+
+\usetikzlibrary{angles,quotes,calc,intersections,through,backgrounds}
+
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{D}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+\newcommand{\bu}{\bullet}
+
+\makeatletter
+\DeclareFontFamily{U}{tipa}{}
+\DeclareFontShape{U}{tipa}{m}{n}{<->tipa10}{}
+\newcommand{\arc@char}{{\usefont{U}{tipa}{m}{n}\symbol{62}}}%
+
+\renewcommand{\arc}[1]{\mathpalette\arc@arc{#1}}
+
+\newcommand{\arc@arc}[2]{%
+  \sbox0{$\m@th#1#2$}%
+  \vbox{
+    \hbox{\resizebox{\wd0}{\height}{\arc@char}}
+    \nointerlineskip
+    \box0
+  }%
+}
+\makeatother
+  
+\graphicspath{{images/}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{ex}{Example}[section]
+\newtheorem{gm}{Game}[section]
+\newtheorem{problem}{Problem}[section]
+\newtheorem{solution}{Solution}
+
+\newcommand{\Mod}[1]{\ (\text{mod}\ #1)}
+
+\DeclareSIUnit\K{K}
+\DeclareSIUnit\mol{mol}
+\DeclareSIUnit\psi{psi}
+\DeclareSIUnit\atm{atm}

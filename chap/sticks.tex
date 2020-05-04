@@ -1,0 +1,243 @@
+\subsection{Distributing Candy to Kids}
+
+Suppose we have this problem, 
+
+\begin{problem}
+I have 10 identical pieces of candy. In how many different ways can I distribute the candies to 5 different kids?
+\end{problem}
+
+At first it seems really difficult, right? I could give out $(2, 2, 2, 2, 2)$, $(1, 2, 3, 4, 0)$, $(0, 0, 10, 0, 0)$, etc...the list doesn't seem to end. 
+
+The strategy we're going to employ right now is called \textit{using simplifications to find generalizations}. The tip doesn't sound very useful, so hopefully this solution can help. We will begin by assuming we have 1 piece of candy and $m$ number of kids.
+
+\begin{itemize}
+    \item Suppose we only had \textbf{1 piece of candy}. Now it's pretty easy right? We can only give this piece of candy to one of the $m$ kids, so we have $\boxed{m}$ ways when there is 1 piece of candy. 
+    \item \textbf{2 pieces}. We can either give 2 to one kid, or 1 to two kids. We have a total of $$\boxed{\binom{m}{1}+\binom{m}{2}}.$$
+    \item \textbf{3 pieces}. We can still manage, this...we can do either 3 all to one kid, 2 to one kid and 1 to another, or 1 to three kids. This gives us $\boxed{\binom{m}{1}+\binom{m}{2}+\binom{m}{3}}$
+\end{itemize}
+
+we found some stuff, but the casework is looking very ugly, how about let's reduce the number of kids instead? (and generalize to $n$ pieces of candy as well)
+
+\begin{itemize}
+    \item Suppose we only had \textbf{1 kid}. Then we can only give out the candy $\boxed{1}$ way
+    \item \textbf{2 kids}. We can give the first kid $0, 1, \cdots, n$, and give the second kid the rest. There are $\boxed{n+1}$ ways
+    \item \textbf{3 kids}. Hm...it's starting to get hard but we can still manage with case work. We can give 0 to the first kid, and have the 2 kid problem again, giving $n+1$, give 1 to the first kid, and have $n$ choices for the other two kids, and so on, giving $(n+1)+n+(n-1)+\cdots+1 = \boxed{\frac{(n+1)(n+2)}{2}}$ 
+\end{itemize}
+
+Yikes...it looks messy for both but at least we've made some progress.
+
+\subsubsection{Organize Your Progress}
+Maybe we can try to summarize what we've done by making a chart of the total number of ways to distribute $m$ candies to $n$ children,
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc|cccccc}
+ && \multicolumn{5}{c}{Kids} \\
+ && 1 & 2&3&4&5&6 \\
+ \hline
+ \hline
+ & 0&1&1&1&1&1&1\\
+  & 1& 1&2 &3&4&5&6\\
+ \parbox[t]{2mm}{\multirow{3}{*}{\rotatebox{90}{Candy}}}& 2 &1&3&6&10&15&21\\
+ & 3 &1&4&10&20&35&56\\
+ & 4 &1&5&15&35&70&126 \\
+ & 5 &1&6&21&56&126&252
+    \end{tabular}
+    \label{tab:candy}
+\end{table}
+
+Hmm....where have we seen these numbers before?
+
+Perhaps you recall \textbf{Pascal's Triangle}:
+
+\begin{center}
+\begin{tabular}{ccccccccccccc}
+ &&&&&1&&&&&&&\\
+ &&&&1&&1&&&&&\\
+ &&&1&&2&&1&&&\\
+ &&1&&3&&3&&1&\\
+ &1&&4&&6&&4&&1\\
+\end{tabular}
+\end{center}
+
+Let's replace the numbers in our table with combinations $\binom{n}{r}$ to maybe see if we can discover a simple solution to our problem.
+
+
+\begingroup
+\setlength{\tabcolsep}{6pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{table}[H]
+    \centering
+    \begin{tabular}{cc|CCCCCC}
+ && \multicolumn{5}{c}{Kids} \\
+ &&  1& 2&3&4&5&6 \\
+ \hline
+ \hline
+ &0 &\binom{0}{0}&\binom{1}{1}&\binom{2}{2}&\binom{3}{3}&\binom{4}{4}&\binom{5}{5}\\
+ &1&\binom{1}{0}& \binom{2}{1} &\binom{3}{2}&\binom{4}{3}&\binom{5}{4}&\binom{6}{5}\\
+ \parbox[t]{2mm}{\multirow{3}{*}{\rotatebox{90}{Candy}}}& 
+ 2 &\binom{2}{0}&\binom{3}{1}&\binom{4}{2}&\binom{5}{3}&\binom{6}{4}&\binom{7}{5}\\
+ &3&\binom{3}{0}&\binom{4}{1}&\binom{5}{2}&\binom{6}{3}&\binom{7}{4}&\binom{8}{5}\\
+ &4&\binom{4}{0}&\binom{5}{1}&\binom{6}{2}&\binom{7}{3}&\binom{8}{4}&\binom{9}{5} \\
+ &5&\binom{5}{0}&\binom{6}{1}&\binom{7}{2}&\binom{8}{3}&\binom{9}{4}&\binom{10}{5}
+    \end{tabular}
+    \label{tab:candy2}
+\end{table}
+\endgroup
+
+There seems to be some sort of pattern...every time the number of pieces of candy goes up by 1, $\binom{n}{r}$ goes to $\binom{n+1}{r}$, and when the number of kids goes up, $\binom{n+1}{r+1}$. Testing formulas, we can reason that 
+
+$$\boxed{\text{Number of ways to distribute } r \text{ candies to } n \text{ kids} = \binom{n+r-1}{n-1}}.$$
+
+Finally, we can solve our problem! We have $n = 5 \text{ kids}, r = 10 \text{ candies}$, so 
+
+$$\binom{k+n-1}{n-1} = \binom{10+5-1}{5-1} = \binom{14}{4} = \boxed{1001}.$$
+
+Imagine doing the casework to get 1001 as your answer...yikes.
+
+\subsubsection{Another Perspective}
+
+It seems like even though we found a simple solution to our answer, there was a \textit{lot} of work that we had to do in order to get to our result. Furthermore, our proof (which I didn't present formally) was basically a pattern identification one. There must be a better way to do this problem, right?
+
+And of course, there is a better way to do this. Suppose that we put all 10 candies on a table and put 4 dividers to represent how much candy each person gets. For example, 
+
+$$\bu |\bu |\bu \bu \bu |\bu \bu \bu |\bu \bu,$$
+
+would represent the distribution $(1, 1, 3, 3, 2)$. For you skeptical folks, you might claim this method doesn't always work, suppose we have 
+
+$$\bu ||\bu \bu \bu \bu \bu \bu \bu ||\bu \bu.$$
+
+What do we do now? There are dividers next to each other...but then we realize that we're allowed to give children 0 pieces of candy, so this case just represents $(1, 0, 7, 0, 2)$.
+
+Now the problem is easy right? All we have to do is arrange 4 $|$ and 10 $\bu$, which is the same as $\boxed{\binom{14}{4}}$, the answer we got earlier. Now, it's clear why there's a minus one in our formula for the total number of ways to distribute candies---we only need $n-1$ dividers for $n$ children. When we have an argument like this---that we can find another problem that solves the problem we are trying to do---we are making a \textbf{bijection}, also known as a one-to-one correspondence. Bijections are powerful in problem-solving because as you can see in this problem, you can find a correspondence that is much easier to solve than the original.
+
+\subsection{The Hockey Stick Identity}
+
+Suppose we have the problem (yes, these problems really do show up in competition math):
+
+\begin{problem}
+Compute 
+$$\binom{4}{4}+\binom{5}{4}+\cdots+\binom{12}{4}$$
+\end{problem}
+
+There are two ways to approach this problem. We just did a long problem about distributing $r$ candies to $n$ kids, and if we look carefully, the sum is asking for
+
+$$P(0,5)+P(1,5)+\cdots+P(8,5),$$
+
+where $P(r,n)$ is a function that describes the number of ways to distribute $r$ candies to $n$ kids. Of course, from our casework earlier, we recognize this sum as $N(8,6)$, because it's the casework we would do if we gave one of the kids $0,1,\cdots,8$ pieces of candy and redistributed the rest to the others. Therefore, our answer is $N(8,6) = \boxed{\binom{13}{5}}$.
+
+Hmm...our answer does look suspicious, but maybe it'll be clearer if we try our second method, which if you haven't guessed already, is using Pascal's Triangle. For the sake of saving paper and not drawing a huge triangle, let's instead calculate 
+
+$$\binom{1}{1}+\binom{2}{1}+\binom{3}{1}.$$
+\clearpage
+
+I know the problem is really easy, but let's draw our handy dandy Pascal's Triangle:
+
+\begingroup
+\setlength{\tabcolsep}{3pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{center}
+\begin{tabular}{CCCCCCCCC}
+     &&&&\binom{0}{0}&&&& \\
+     &&&\binom{1}{0}&&\binom{1}{1}&&& \\
+     &&\binom{2}{0}&&\binom{2}{1}&&\binom{2}{2}&& \\
+     &\binom{3}{0}&&\binom{3}{1}&&\binom{3}{2}&&\binom{3}{3}& \\
+     \binom{4}{0}&&\binom{4}{1}&&\binom{4}{2}&&\binom{4}{3}&&\binom{4}{4} \\
+\end{tabular}
+\end{center}
+\endgroup
+
+If you follow the path of $\binom{1}{1}+\binom{2}{1}+\binom{3}{1}$ and veer right, you end up at $\binom{4}{2}=6$, which happens to our answer. This property seems peculiar, that the sum of the elements along a diagonal add up to the element below and to the right of the last. But this in fact is \textit{always} true, and because the shape that we draw on Pascal's Triangle is supposed to remind you of a hockey stick, we call it the \textbf{Hockey Stick Identity}. Formally, the theorem states
+
+$$\boxed{\binom{r}{r}+\binom{r+1}{r}+
+\cdots+\binom{n}{r}=\binom{n+1}{r+1}, r\geq 0, n\geq r}.$$
+
+Now, to prove this theorem the non-Pascal's triangle and non-counting way, we turn to our most reliable friend, algebra. We have
+
+$$\binom{r}{r}+\binom{r+1}{r}+\cdots+\binom{n}{r}.$$
+
+Of course, if you recall last week's lecture, it seems like Pascal's is just \textit{dying} to have us use his identity, 
+
+$$\binom{n}{r}+\binom{n}{r+1}=\binom{n+1}{r+1}.$$
+
+Of course, the terms in our sum don't have the same top component of the combination, so it seems like we are stuck. But wait! $\binom{r}{r}=1=\binom{k}{k},\forall k\in \mathbb{Z}$, we can just change our first term to $\binom{r+1}{r+1}$ and apply Pascal's to the first two terms,
+
+\begin{align*}
+    \binom{r+1}{r+1}+\binom{r+1}{r}+\binom{r+2}{r}+\binom{r+3}{r}+\cdots&=\binom{r+1}{r+1}+\binom{r+2}{r}+\binom{r+3}{r}+\cdots \\
+        &=\binom{r+2}{r+1}+\binom{r+3}{r}+\cdots \\
+        &=\binom{r+3}{r+1}+\cdots
+\end{align*}
+
+and you should get the idea. When we get to the last two terms, we have 
+
+$$\binom{n}{r+1}+\binom{n}{r}=\binom{n+1}{r+1},$$
+
+which is just Pascal's identity, and we have proved our theorem. We call this technique \textbf{telescoping}, when we are able to ``shrink'' our expression.
+
+\clearpage
+
+\subsection{Problems}
+\begin{problem}
+Find the total number of ways to distribute:
+\begin{itemize}
+    \item 9 candies to 5 children
+    \item 4 candies to 7 children
+    \item 14 candies to 5 children if each child must receive \textit{at least} 1 piece
+    \item 17 pieces of candy to 5 kids, if the youngest kid can't get more than any of the others
+\end{itemize}
+\end{problem}
+
+\begin{problem}
+How many ways can I distribute 8 LEGO sets, 5 Hot Wheels cars, 7 video games, and 10 Pok\'{e}mon cards to 4 children if each child has to receive at least one of each type of toy?
+\end{problem}
+
+\begin{problem}
+Alice, Bob, Charlie, and Dave are running for President of their class. There are 100 people voting in this election. How many outcomes are possible if (you can leave your answer unsimplified):
+\begin{enumerate}[label=(\alph*)]
+    \item Everybody votes?
+    \item Some people abstain (don't vote)?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Compute 
+$$\binom{2}{2}+\binom{3}{2}+\cdots+\binom{16}{2}$$
+\end{problem}
+
+\begin{problem}
+Compute 
+$$\binom{7}{3}+\binom{8}{3}+\cdots+\binom{14}{3}$$
+\end{problem}
+
+\begin{problem}
+Compute
+$$12\binom{3}{3}+11\binom{4}{3}+\cdots+2\binom{13}{3}+\binom{14}{3}$$
+\end{problem}
+
+\begin{problem}
+When $(x+y+z)^{2009}$ is expanded and like terms are grouped together, there are $k$ terms with coefficients that are \textit{not} multiples of 5. Find $k$. \textit{Hint: Write 2009 in base 5}
+
+\textit{Source: TJ ARML Practice}
+\end{problem} 
+
+\begin{problem}
+The polynomial $1-x+x^2-x^3+\cdots+x^{16}-x^{17}$ may be written in the form $a_0+a_1y+a_2y^2+\cdots +a_{16}y^{16}+a_{17}y^{17}$, where $y=x+1$ and the $a_i$'s are constants. Find the value of $a_2$. \textit{Source: AIME}
+\end{problem}
+
+\begin{problem}
+Consider all 1000-element subsets of the set {1, 2, 3, ... , 2015}. From each such subset choose the least element. The arithmetic mean of all of these least elements is $\frac{p}{q}$, where $p$ and $q$ are relatively prime positive integers. Find $p + q$. \textit{Source: AIME}
+\label{p1}
+\end{problem}
+
+\begin{problem}
+The Annual Interplanetary Mathematics Examination (AIME) is written by a committee of five Martians, five Venusians, and five Earthlings. At meetings, committee members sit at a round table with chairs numbered from $1$ to $15$ in clockwise order. Committee rules state that a Martian must occupy chair $1$ and an Earthling must occupy chair $15$, Furthermore, no Earthling can sit immediately to the left of a Martian, no Martian can sit immediately to the left of a Venusian, and no Venusian can sit immediately to the left of an Earthling. The number of possible seating arrangements for the committee is $N(5!)^3$. Find $N$. \textit{Source: AIME}
+\end{problem}
+
+\begin{problem}
+Let $1 \le r \le n$ and consider all subsets of $r$ elements of the set $\{ 1, 2, \ldots , n \}$. Each of these subsets has a smallest member. Let $F(n,r)$ denote the arithmetic mean of these smallest numbers; prove that
+
+$$F(n,r) = \frac{n+1}{r+1}.$$
+
+\textit{Source: IMO}
+\end{problem}

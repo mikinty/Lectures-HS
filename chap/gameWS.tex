@@ -1,0 +1,154 @@
+We will be playing some games introduced last lesson to get a better feel for what game theory is about. We will learn about strategies and see how some of the results we derived last class happen because of strategy optimization.
+
+\subsection{The Games}
+We will explore the following games today:
+\begin{itemize}
+    \item Traditional Dice Games
+    \item Monty Hall
+    \item Prisoner's Dilemma
+    \item Oligopoly Simulation
+\end{itemize}
+
+\subsection{Dice}
+This is one of the most popular one-player games out there. Remember, for these type of games, the main question is always ``what is my expected earnings?'' This will let you determine how much you should pay to play the game to you don't get ripped off.
+
+\begin{gm}
+Suppose we play a game so that each time you roll a standard dice, you win the amount of dollars that you roll. What is the expected amount of dollars you win every roll?
+\end{gm}
+
+\begin{gm}
+In the game of $\text{Dice}^2$, you can win money by rolling dice! Your winnings are determined by the product of the two numbers that appear on the pair of dice you roll. \textit{Extension: Can you figure out the expected winnings of a general $Dice^n$ game?}
+\end{gm}
+
+\subsection{Monty Hall}
+Of course, we'll play the classic Monty Hall first to see what the craze is all about.
+
+\begin{gm}
+Suppose we have 3 curtains, 2 with goats and 1 with a car behind it. You are given the option to choose any curtain at the beginning. Then, the host removes one of the remaining two curtains that has the goat behind it so that you are left with two curtains, one with the car and one the goat. You are given the option to switch at the end.
+\end{gm}
+
+\begin{gm}
+Suppose we play Monty Hall with 4 goats and 1 car. Find the probability you win if you switch.
+\end{gm}
+
+\begin{gm}
+Suppose we play Monty Hall with 4 goats and 2 cars. After you choose a curtain, the host removes all but your curtain and another curtain so that only one goat and one car is left. Find the optimal strategy and your probability of winning with this strategy.
+\end{gm}
+
+\begin{gm}
+Suppose we play Monty Hall with 2 goats and 2 cars. After you choose a curtain, the host removes all but your curtain and another curtain so that only one goat and one car is left. Find the optimal strategy and your probability of winning with this strategy.
+\end{gm}
+
+\subsection{Prisoner's Dilemma}
+Ah...the most nerve-racking and evil game of all. You'll be pitted against your own morals when you try these out...
+
+\begin{gm}
+We will begin with the classic Prisoner's Dilemma. Person A and Person B are in trouble at school, but the principal is not sure what happened. The following are the options for Person A and Person B and their payoffs.
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Person A} \\
+     && Tattle & Keep Quiet \\
+     \cline{2-4}
+     \multirow{2}{*}{Person B}&Tattle & 5 days, 5 days & Blame Cleared, Expelled \\
+     &Keep Quiet & Expelled, Blame Cleared & 1 day, 1 day
+\end{tabular}
+\end{center}
+\end{gm}
+
+
+\begin{gm}
+The following is the payoff matrix for two companies who are deciding whether or not to advertise for the upcoming year.
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Company A} \\
+     && Advertise & Don't Advertise \\
+     \cline{2-4}
+     \multirow{2}{*}{Company B}& Advertise & (\$10, \$10) & (\$19, \$6) \\
+     &Don't Advertise&(\$10, \$7) & (\$15, \$17) 
+\end{tabular}
+\end{center}
+\end{gm}
+
+\begin{gm}
+The following is the payoff matrix for two companies who are deciding whether or not to advertise for the upcoming year.
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Company A} \\
+     && Advertise & Don't Advertise \\
+     \cline{2-4}
+     \multirow{2}{*}{Company B}& Advertise & (\$10, \$10) & (\$19, \$6) \\
+     &Don't Advertise&(\$10, \$7) & (\$15, \$17) 
+\end{tabular}
+\end{center}
+\end{gm}
+
+\begin{gm}
+You and your friend are going trick-or-treating. You guys are trying to figure out what paths to take. If you guys take the same path, then you will both receive less candy than if you guy choose different paths.
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Person 1} \\
+     && Route A & Route B \\
+     \cline{2-4}
+     \multirow{2}{*}{Person 2}& Route A & (30, 40) & (70, 100) \\
+     &Route B&(90, 70) & (40, 30) 
+\end{tabular}
+\end{center}
+\end{gm}
+
+\subsubsection{Golden Balls}
+\begin{gm}
+I bring to you the British game show---Golden Balls! This show used to air on TV from 2007-2009, and was one nervous game for contestants and spectators alike. In the final round, we reach the infamous ``Split or Steal'' situation, which is described by the following matrix:
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Person 1} \\
+     && Split & Steal \\
+     \cline{2-4}
+     \multirow{2}{*}{Person 2}& Split & (Half, Half) & (Nothing, Everything) \\
+     &Steal &(Everything, Nothing) & (Nothing, Nothing) 
+\end{tabular}
+\end{center}
+\end{gm}
+
+\subsection{Oligopoly Simulations}
+In this section we'll see the two-player game extended in general to larger scales.
+
+\subsubsection{Extra Credit}
+\begin{gm}
+Suppose I am offering you extra credit. I am giving you 10 points...but what you can do is keep the points, which are added directly to your grade, or donate them to charity, which doubles the points and is then distributed among everybody else. For example, I could keep 5 points and donate 5 points to charity, which would put $5\times2 = 10$ points into the pot to be distributed to everyone.
+\end{gm}
+
+\subsubsection{Product Market}
+\begin{gm}
+You guys are all CEOs of major companies that are competing in one market. Each round, you will be shown a supply and demand graph, telling you how much you will sell your product for given a certain quantity supplied of the product. What you have to decide is how much of the product to produce? You each are given a card that tells you your cost of production of one product. The quantity supplied in the market is the sum of the productions of all the companies combined.
+
+Use the following table to keep track of your production, costs, and profits in each round.
+
+\begin{center}
+\renewcommand{\arraystretch}{2.5} % Default value: 1
+\begin{tabularx}{.9\textwidth}{|c|c|c|c|X|}
+    \hline
+    Round & Production Cost & \# Produced & Market Price & Profit \\
+    \hline
+    1&&&& \\
+    \hline
+    2&&&& \\
+    \hline
+    3&&&& \\
+    \hline
+    4&&&& \\
+    \hline
+    5&&&& \\
+    \hline
+\end{tabularx}
+\end{center}
+
+\vspace{0.2in}
+
+\hspace{2.74in} \textbf{Total Profit: } \underline{\hspace{5.5cm}}
+
+\end{gm}

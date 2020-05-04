@@ -1,0 +1,250 @@
+Although the idea of recursion is simple---it's something that calls on itself---understanding it can be kind of tricky. For example, to start off with a simple example, consider the following joke:
+\begin{center}
+\textit{``Q: What is Benoit B. Mandelbrot's middle name? A: Benoit B. Mandelbrot.''}
+\end{center}
+Recursion gets complicated because we relate unknowns with...more unknowns. Although this seems to make problems more complex than they actually are, it actually gives us beautiful and simple relationships.
+
+\subsection{Fibonacci}
+Perhaps the most famous recursion is the \textbf{Fibonacci Sequence}, which is defined by the following, 
+
+\begin{equation}
+    F_n = F_{n-1} + F_{n-2},\!\, 
+\end{equation}
+where starting values are $F_1=F_2=1$.
+
+If you plug into the formula, starting with computing $F_3 = F_2+F_1 = 1+1 =2$, you can compute the first few terms,
+
+$$ 1,\;1,\;2,\;3,\;5,\;8,\;13,\;21,\;34,\;55,\;89,\;144,\; \ldots\; $$
+
+\subsubsection{Fibonacci in Disguise}
+It turns out that understanding simple recurrence relationships like Fibonacci can help us solve a host of problems. 
+
+\begin{ex}
+Lou is climbing a  flight of 4 stairs.  With each step, he will climb either 1 or 2 stairs.
+In how many different ways can he climb the flight of stairs?
+\end{ex}
+
+\begin{ex}
+In how many ways can we tile a $2\times9$ checkerboard with tiles of size $2\times 1$, such that each tile covers exactly two squares? (no overlapping tiles)
+\end{ex}
+
+\subsection{Classic Recursion}
+This section will present more typical examples for you to familiarize yourself with the recursion process. Remember, finding a \textbf{recurrence relation} is what allows us to make these problems easier to count---you break the problem into smaller parts that build on each other.
+
+\begin{ex}
+Find the number of 8-digit sequences that only have 0,1,2, but no two consecutive zeros.
+\end{ex}
+
+\begin{ex}
+There are 12 spaces in a parking lot, and today I know I will be expecting Porsches, which take up 1 space, Jeeps and Cadillacs, which both take 2 spaces each, and Jeeps, Hummers, and Trucks, which each take up 3 spaces each. How many ways can these cars (which there are infinite number of) fill up the 12 spaces in the parking lot?
+\end{ex}
+
+\subsubsection{Linear Recurrences}
+Suppose we had some recurrence relation 
+
+\begin{equation}
+    a_n = c_{n-1}a_{n-1}+c_{n-2}a_{n-2}+\cdots+c_0a_0,
+\end{equation}
+where $a_i$ is a term in the sequence $\{a_i\}_{i=1}^{N}$, and $c_i$ is some function (it's usually a constant for our purposes). Then our question is, \textit{can we find a closed form for $a_n$}?
+
+At first, you might say, why would I bother wanting to find a closed form? Well try this problem,
+
+\begin{ex}
+You are trying to stack a tower that is 100 ft tall. You have 5 colors of 1 ft tall blocks and 6 colors of 2 ft tall blocks. How many distinct towers can you construct? (you have infinite number of each block)
+\label{ex:lr}
+\end{ex}
+
+The recurrence relation is easy, you can either use one of 5 kinds of 1 ft tall blocks, which leaves you with finding $a_{n-1}$ ways to stack, or use one of 6 kinds of 2 ft tall blocks, which leaves you with finding $a_{n-2}$ ways to stack. Thus, the recurrence relation is
+\begin{equation}
+    a_n = 5a_{n-1}+6a_{n-2}.
+\end{equation}
+
+And you could start computing some values for $a_n$, 
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+        $n$ & $a_n$\\
+        \hline
+         1 & 5 \\
+         2 & 31 \\
+         3 & 185 \\
+         4 & 1111 \\
+         \multicolumn{2}{c}{
+         $\cdots$}
+    \end{tabular}
+    \caption{Some values for $a_n$}
+    \label{tab:my_label}
+\end{table}
+but quickly, you see that the values are getting out of hand...
+
+Therefore, our motivation for finding a general formula is not just for the pure mathematics fun, but also so it can make our calculations easier. 
+
+To do a linear recurrence, we use the fact that, well, the recurrence relation is \textbf{linear}. As pre-high school students (or pre-linear algebra students), however, you probably have \textit{no idea} what I mean by a linear property. 
+
+\begin{theorem}
+A function $f(x)$ is said to be linear if it satisfies:
+\begin{itemize}
+    \item \textbf{Additivity:} $f(x+y) = f(x)+f(y)$
+    \item \textbf{Homogeneity:} $f(kx) = kf(x)$
+\end{itemize}
+\end{theorem}
+
+We'll need a little more to understand more to get to our next results, but for our purposes, we're only interested in solving the problem. If you really want some insight into it, you can think of a linear function as a matrix multiplication. Try to absorb this next theorem.
+
+\begin{theorem}
+Assuming that  
+\begin{equation*}
+    a_n = \sum\limits_{k=1}^{n-1} c_{k}a_{k}
+\end{equation*}
+can be written as a linear recurrence, we know the solutions are in the form
+$$a_n = \sum\limits_{k=0}^{r} \lambda_k p^n,$$
+where $p$ is some unknown constant that is solved for by substituting $a_n = p^n$
+\label{thm:2}
+\end{theorem}
+
+Using Theorem \ref{thm:2}, we can now solve our linear recurrence in Example \ref{ex:lr}. We have 
+
+\begin{align*}
+    a_n &= 5a_{n-1}+6a_{n-2} \\
+    p^n &= 5p^{n-`}+6p^{n-2} 
+\end{align*}
+Dividing the equation through by $p^{n-2}$ yields us a quadratic
+\begin{align*}
+    p^2-5p-6 &= 0 \\
+    (p-6)(p+1) &= 0 
+\end{align*}
+which yields the roots $p=-1, 6$. It is important to note that the quadratic we got here is known as the \textbf{characteristic polynomial}; this implies in general, of course, that it won't necessarily be a quadratic. With these roots, we now know our solutions are in the form
+\begin{equation}
+    a_n = \lambda_1 (-1)^n + \lambda_2 (6)^n.
+\end{equation}
+How do we find our two unknown constants? Well it's actually really easy. We just need to plug in two values of $a_n$, giving us a system. To make our lives easier, we'll just use $a_1, a_2$:
+\begin{align*}
+    a_1 &= -\lambda_1+6\lambda_2 = 5\\
+    a_2 &= \lambda_1+36\lambda_2 = 31.
+\end{align*}
+This system yields $(\lambda_1, \lambda_2) = (\frac{1}{7},\frac{6}{7})$. We finally have our answer, which looks very clean now
+\begin{equation}
+    \boxed{a_n = \frac{1}{7}(-1)^n+\frac{6}{7}(6)^n}
+\end{equation}
+If you're skeptical of this answer, try plugging in $n-3, 4$, and seeing if it matches up with what we got earlier.
+
+\subsubsection{Degenerate Linear Recurrences}
+Suppose our linear recurrence is 
+\begin{equation}
+    a_n = 4a_{n-1}-4a_{n-2}.
+\end{equation}
+We can easily find our roots $p$ with the characteristic polynomial,
+\begin{equation}
+    p^2-4p+4 = 0,
+\end{equation}
+which gives us the roots $p=2$...that is a double root at $p=2$. We are sort of stuck here, because we have no idea what to do now that we have a repeated root. There are ways to prove this next theorem, but we'll just have to take it for fact now since it requires linear algebra arguments.
+
+\begin{theorem}
+If $p_0$ is a root of the characteristic polynomial $C(p)$ with multiplicity $r$ (repeated $r$ times), then the $p_0$ contribution to the general solution $a_n$ will be
+\begin{equation}
+    \sum\limits_{k=0}^{r-1} (n)^{k} \lambda_k (p_0)^n = (p_0)^n\left(\lambda_0 + \lambda_1 n +\lambda_2 n^2 + \cdots +\lambda_{r-1} n^{r-1}\right)
+\end{equation}
+\label{thm:deg}
+\end{theorem}
+
+Using Theorem \ref{thm:deg}, we know our general solution will be in the form 
+\begin{equation}
+    a_n = \lambda_0 (2)^n + n\lambda_1 (2)^n.
+\end{equation}
+Now we can solve for the constants given initial conditions just like we did with the earlier example.
+
+\subsection{Recursive Functions}
+Suppose you had to evaluate
+\begin{equation}
+    \frac{1}{1+\frac{1}{1+\frac{1}{1+\cdots}}}
+\end{equation}
+
+Of course, thinking like a mathematician, you turn to trying small cases and trying to induct on them. We compute the following:
+
+\begin{itemize}
+    \item $\frac{1}{1} = 1$
+    \item $\frac{1}{1+\frac{1}{1}} = \frac{1}{2}$
+    \item $\frac{1}{1+\frac{1}{1+\frac{1}{1}}} = \frac{2}{3}$
+    \item $\frac{1}{1+\frac{1}{1+\frac{1}{1+\frac{1}{1}}}} = \frac{3}{5}$
+    \item $\frac{1}{1+\frac{1}{1+\frac{1}{1+\frac{1}{1+\frac{1}{1}}}}} = \frac{5}{8}$
+\end{itemize}
+
+Hm...where have we seen the numbers in these fractions? Maybe you recall the Fibonacci sequence again! Let's try to prove why this is true. 
+
+\begin{lemma}
+Each term in the sequence $\{a_i\}_{i=1}^{\infty}$ has the form
+\begin{equation}
+    a_n = \frac{F_{n}}{F_{n+1}},
+\end{equation}
+where $F_n$ is the $n^{\text{th}}$ term of the Fibonacci sequence.
+\label{lm:1}
+\end{lemma}
+
+\textit{Proof.} We proceed with this proof by induction. For $n=1$, the lemma clearly holds, as
+$$a_1 = \frac{1}{1}= \frac{F_1}{F_2}.$$
+For a general $n$, we can find the next term by the following relationship of the sequence $a_i$, derived from the original continued fraction relationship.
+\begin{equation}
+    a_{n+1} = \frac{1}{1+a_{n}}
+    \label{eq:lm1}
+\end{equation}
+So now using Equation (\ref{eq:lm1}), we can find $a_{n+1}$, 
+
+\begin{align*}
+    a_{n+1} &= \frac{1}{1+a_{n}} \\
+            &= \frac{1}{1+\frac{F_n}{F_{n+1}}} \\
+            &= \frac{F_{n+1}}{F_{n+1}+F_{n}} \\
+            &= \frac{F_{n+1}}{F_{n+2}} 
+\end{align*}
+which completes the induction. $\Box$
+
+From Lemma \ref{lm:1}, we can compute the value for the infinitely continued fraction. Since the closed form of Fibonacci can be written as the following, where $\varphi = \frac{1+\sqrt{5}}{2}$ (the golden ratio),
+\begin{equation}
+    F\left(n\right) = \frac{\varphi^n-(-\varphi)^{-n}}{\sqrt{5}},
+\end{equation}
+we can easily compute what the expression should equal. 
+\begin{align*}
+    x &= \lim_{n\to\infty} \frac{F_n}{F_{n+1}}\\
+      &= \lim_{n\to\infty} \frac{\frac{\varphi^n-(-\varphi)^{-n}}{\sqrt{5}}}{\frac{\varphi^{n+1}-(-\varphi)^{-(n+1)}}{\sqrt{5}}} \\
+      &= \boxed{\frac{1}{\varphi}}.
+\end{align*}
+
+Instead of using the first method, let's think of this problem in another recursive perspective. Suppose we assumed the value of the continued fraction to a value, let's call it $x$, 
+
+\begin{equation}
+    x = \frac{1}{1+\frac{1}{1+\frac{1}{1+\cdots}}}.
+\end{equation}
+
+Then aha! We see something. Inside the fraction, we can find $x$ again. Namely, we can substitute $x$ where it appears again, giving:
+
+\begin{align*}
+    x &= \frac{1}{1+x} \\
+    x^2 + x -1 &= 0, \quad x = \boxed{\frac{-1+\sqrt{5}}{2}},
+\end{align*}
+which is the same answer that we got earlier. Notice that we take the positive root of the quadratic since the original expression is clearly positive. When you have to evaluate recursive expressions like this continued fractions example, it is almost always easier to use the algebraic method.
+
+
+
+\subsection{Problems}
+\begin{problem}
+Your Pok\'{e}mon has 10 PP left (this is different from the normal game where you have PP for each move. Your moves are tackle and weaken (1 PP), tail whip (2 PP),  and thunderbolt (3 PP). How many distinct sequences of moves can you make that uses up all 10 of your PP?
+\end{problem}
+
+\begin{problem}You are part of the biotech lab, and need to produce enough goats for your fantastic experiment. However, you only have 2 adult goats, which can produce 4 baby goats every month. Fortunately, these goats are super goats that never die, and their babies are also super goats. In addition, these super goat babies only take a month to reach adulthood and have the ability to reproduce more baby goats. You need 337 goats by the end of five months---will your super goats be able to do it?
+\end{problem}
+\begin{problem} It is well known that listening to Lil-Wayne, Nicki Minaj and Justin Bieber causes an extraordinary amount of auditory damage. Therefore, you must rest for at least one hour after listening to an entire album by Justin Bieber, two for Nicki Minaj, and three for Lil-Wayne, before listening to any more music. With that in mind, and the fact that all albums in this problem are an hour long, how many distinct 6-hour playlists can you create with unlimited of one unique Taylor Swift (no rest needed), 9 Justin Bieber (1 hr rest), 11 Nicki Minaj (2 hr rest), and 4 Lil-Wayne (3 hr rest) albums? \textit{Extension: How about for a 12-hour playlist? Use linear recurrences!}
+\end{problem}
+\begin{problem}Beyonc\'{e} and Jay Z are bored out of their minds after they retire, and decide to play a Grammy trading game. Each one of them puts 14 Grammys on the table. The rules are as follows: each turn, a coin is flipped. If it is heads Beyonc\'{e} gets to take a Grammy from Jay Z, and if it is tails, Jay Z takes it from Beyonc\'{e}. Now Jay Z, being a math champ, is saying ``naw this game is too boring and we are equally likely to win''. Beyonc\'{e}, on the other hand, replies by saying that whoever ends up with all 28 Grammys on the table gets to take it, making the game more interesting. What is the expected number of turns it takes for either one of them to win the Grammy game?
+\end{problem}
+
+\begin{problem} The Boston Celtics and the Los Angeles Lakers meet for their \nth{95} NBA final in the year 2318. The series is hard fought, and after six games, you want to compute the probability that the teams are tied three games apiece. Given that the Celtics win any game with probability $\frac{3}{5}$ and the Lakers win any game with probability $\frac{2}{5}$, what is this probability?
+\end{problem}
+\begin{problem}Michael Phelps is training for the 2016 Rio Olympics. Unfortunately, because he has been enjoying life and slacking off in practice, he is extremely out of shape. Today, during practice, his coach decides that Michael will not leave the pool unless he finishes 5 sets of 400 IM consecutively on an interval of 4:30. Phelps, with all the time he's been slacking, gives up on a 400 IM with probability $\frac{1}{5}$ every time, which means he will have to start over the entire set (that's 5 more 400 IMs Mike...good luck dying). What is the expected number of times he will have to swim the 400 IM before he drags himself out of the pool?
+\end{problem}
+
+\begin{problem}
+Solve for $x$, where
+\begin{equation}
+    x = \sqrt{x+\sqrt{x+\sqrt{x+\cdots}}}
+\end{equation}
+\end{problem}

@@ -1,0 +1,86 @@
+Sums and products are sometimes the easiest and hardest questions at the same time. For example, a common question is ``what is the value of: $1\times2+3\times4+5\times6+\cdots+39\times40$?'' (adapted from AIME 2015 \#1). This question isn't hard...I mean a \nth{4} grader could calculate $7\times8$ and $23\times24$ and add them together...it's just you'd have to add up 20 different products, and of course, that's annoying. The purpose of this lecture is to provide insights into how we can improve our efficiency in solving these problems.
+	\subsection{Notation}
+		Notation is an integral part to doing competition math, because if you don't know what the test writer is trying to communicate to you, then you won't know what they are asking for!
+		$$\sum\limits_{i=1}^n i^2=\frac{n(n+1)(2n+1)}{6}$$
+		The big E looking symbol is called \textbf{Sigma}. It denotes \textbf{Summation}. Notice the alliteration?
+		$$\prod\limits_{i=1}^n x = x^n$$
+		The weird arch is actually a \textbf{Pi}...the same one you usually know as $\pi = 3.14159...$ except that it is uppercase. The pi denotes \textbf{Product}. Notice the alliteration? \par
+		In both cases, the letter on the bottom of the $\sum$ or $\prod$ is called the \textbf{dummy variable} or \textbf{index}. In our case, $i$ acts as the dummy variable (this is by convention as well so you might want to use it). This is the variable that appears in the formula, and keeps on increasing until it reaches the number on top of the $\sum$ or $\prod$. This top number is called the \textbf{upper bound}, and basically tells us when we need to stop summing or multiplying. \par
+		
+	\subsection{Basic Formulas}
+	Now is a good time to review our arithmetic and geometric series formulas...except now we will do them with $\sum$ and $\prod$ notation (they will look a tad different). \par
+	
+		\subsubsection{Arithmetic Series} 
+			Given a first term $a$ and a common difference $d$, the sum of the first $n$ terms of this sequence is:
+			$$\sum\limits_{i=0}^{n-1} a+id= \frac{n(a+(a+(n-1)d)))}{2} = \frac{n(2a+(n-1)d)))}{2}$$
+			
+			Since this looks very confusing, most people prefer to think of the sum this way:
+			\begin{equation}
+			    \sum\limits_{i=1}^{n} a_{n}= \frac{(n)(a_1+a_n)}{2}
+			\end{equation}
+			Where $a_n = a_1+(n-1)d$. Remember this result is from ``Gauss's Method'', which involves pairing up elements of the series so that its sum is easy to calculate.
+		\subsubsection{Geometric Series}
+			Since geometric series involve multiplication, many people may think that you may have to use the $\prod$ symbol...NO! The word ``series'' means ``add''. \par
+			Given a first term $a$ and a common ratio $r$ (what you multiply each term by to get the next one), the sum of the first $n$ terms of this sequence is:
+			\begin{equation}
+			    \sum\limits_{i=1}^n ar^{i-1} = \frac{a(r^{n}-1)}{r-1} = \frac{a(1-r^{n})}{1-r}
+			\end{equation}
+			Notice the last two expressions are the same. People usually use the first formula when $r \geq 1$ and the second one when $r<1$.
+		\subsubsection{Problems}
+			See if you can find any properties of $\sum$ or $\prod$ from these problems.
+			\begin{enumerate}
+				\item Compute $\sum\limits_{i=1}^{12} i$ 
+				\item Compute $\sum\limits_{i=1}^{12} 5$ 
+				\item Compute $\sum\limits_{i=1}^{12} (2i-8)$ 
+				\item Compute $\sum\limits_{i=2}^{7} 5^i$
+				\item Compute $\sum\limits_{i=0}^{\infty} \frac{1}{3^i}$
+				\item Compute $\sum\limits_{i=1}^{\infty} \frac{1+2^{k}}{3^{k}}$ 
+				\item Compute $\prod\limits_{i=1}^{12} \frac{i}{i+1}$
+				\item Compute $\prod\limits_{i=1}^{283} \left( \frac{i}{2} - 140\right)$
+				\item If $\sum\limits_{k=1}^{244} a_k = 92$ and $\sum\limits_{k=1}^{244} b_k = -173$, then compute $\sum\limits_{k=1}^{244} 3a_k +4b_k -25$
+			\end{enumerate}
+	\subsection{Arithmetico-Geometric Series}
+		This is technically a ``recursive'' technique, since you find a sum inside of another sum. Try to set the sum equal to a variable, and by multiplying by a constant, you can ``realign'' the sums so that you can find a difference that is easy to find.
+		
+		\begin{problem}
+		Evaluate $1\cdot2^{0} + 2\cdot2^1 + 3\cdot2^2 +\cdots+12\cdot2^{11}$
+		\end{problem}
+		\begin{problem}
+		Evaluate $\sum\limits_{i=0}^\infty \frac{2+3i}{4^i}$
+		\end{problem}
+		\begin{problem}
+		$f_1, f_2, f_3, ...$ is a sequence defined such that $f_{n+3} = f_{n+2}+f_{n+1}+f_{n}$ and $f_1=f_2=1, f_3 = 3$. Find the value of the sum: 
+		$$\sum\limits_{n=1}^{\infty} \frac{f_n}{3^n}$$
+		\textit{Source: (TJTST 3, 2015)}
+		\end{problem}
+	\subsection{Formula for \texorpdfstring{$\sum_{k=1}^n k^n$}{n\textasciicircum k}}
+		These last two sections are a little more advanced, but they are useful.
+		To find a formula for $\sum\limits_{k=1}^n k^n$, we take advantage of being able to ``separate'' sums. Let's find a formula for $n^2$ by starting off with a telescoping series:
+		\begin{align*}
+		\sum\limits_{k=1}^n (k+1)^3-k^3 &= ((n+1)^3 - (n)^3) + (n^{3} - (n-1)^3) +\cdots (3^3-2^3) + (2^3 - 1^3)  \\
+		&= (n+1)^3 - 1 \\
+		&= n^3 + 3n^2 + 3n
+		\end{align*}
+		But if we leave the sum as it is and simplify the expression inside first:
+		\begin{align*}
+		\sum\limits_{k=1}^n (k+1)^3-k^3 &= \sum\limits_{k=1}^n k^3+3k^2+3k+1-k^3 \\ 
+		&= \sum\limits_{k=1}^n 3k^2+3k+1
+		\end{align*}
+		Which we know how to sum...except the squared part (which we are trying to find a formula for...since we know the formula for $\sum\limits_{k=1}^n 3k$ and $\sum\limits_{k=1}^n 1$), so:
+		\begin{align*}
+			\sum\limits_{k=1}^n 3k^2+3k+1 &=  n^3 + 3n^2 + 3n\\ 
+			\sum\limits_{k=1}^n 3k^2 + \sum\limits_{k=1}^n 3k +\sum\limits_{k=1}^n 1 &= n^3 + 3n^2 + 3n\\
+			3\sum\limits_{k=1}^n k^2 + 3\sum\limits_{k=1}^n k + \sum\limits_{k=1}^n 1 &= n^3 + 3n^2 + 3n\\
+			3\sum\limits_{k=1}^n k^2 + \frac{3n(n+1)}{2} + n &= n^3 + 3n^2 + 3n\\
+			3\sum\limits_{k=1}^n k^2 &= n^3 + \frac{3}{2}n^2 + \frac{1}{2}n \\ 
+			\sum\limits_{k=1}^n k^2 &= \frac{1}{6}(2n^3 + 3n^2 + n) \\
+			\sum\limits_{k=1}^n k^2 &= \frac{1}{6}n(2n^2 + 3n + 1) \\
+			\sum\limits_{k=1}^n k^2 &= \frac{n(2n + 1)(n+1)}{6} \\
+		\end{align*}
+		And thus we have found a formula for $\sum\limits_{k=1}^n k^2 $. 
+
+	\subsection{Sum for \texorpdfstring{$\frac{1}{n^2}$}{1/n\textasciicircum 2}}
+		I don't know how to prove thus so just memorize it because it is kind of useful:
+		$$ \sum_{n=1}^\infty \frac{1}{n^2} =
+			\lim_{n \to +\infty}\left(\frac{1}{1^2} + \frac{1}{2^2} + \cdots + \frac{1}{n^2}\right) = 
+			\frac{\pi^2}{6}.$$

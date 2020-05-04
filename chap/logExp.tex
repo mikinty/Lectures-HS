@@ -1,0 +1,103 @@
+	   Logarithms and exponents are essential to understanding ``growth'' and ``decay''. For example, Newton's Law of Cooling and radioactive decay both feature exponential decay. On the other hand, competition math likes to feature them occasionally, so it is important to be able to work with them.
+  \subsection{An Ancient Persian Story}
+		Long ago, the King of Persia decided to award two girls for doing good deeds by giving them rice. Since the first girl knew the King loved chess, she asked to have one grain of rice to placed on the first square of the chessboard, and then one hundred more grains of rice placed on the next square the next day. The King was surprised at how greedy this girl was.\par
+		The second girl, on the other hand, also asked the King to place one grain of rice on the first square of the chessboard, but instead of having one hundred more grains the next day, she would instead just receive double the amount she had the day before. The King agreed without hesitation, and even applauded this girl for not being as greedy as the first.\par
+		On the second day, the King placed 101 grains of rice on the first girl's board, and a mere 2 grains of rice on the other; the first girl mocked the second girl for being so frugal. On the third day, the King placed 201 grains of rice on the first girl's board, and a miniscule 4 grains of rice on the other. And so on.\par
+		Who got the better deal? \textit{(Adapted from AoPS Algebra)} \par
+		
+		\textbf{Problem 1.1} Find a function that represents how much rice each girl received on the $n^{th}$ day and solve the problem. \vspace{2.2in}
+		
+		Thus, the story ended with the King learning about \textbf{exponential growth} the hard way.
+	    \clearpage
+	\subsection{Some exponent problems}
+	We should be able to apply our general knowledge of exponents. \par
+	\begin{problem} Evaluate the following: \end{problem}
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item $5^{2}$
+				\item $1^{329}$
+				\item $-4^{3}$
+				\item $3^{-4}$
+				\item $0.99^{1839}$
+				\item $1.002^{2752}$
+			\end{enumerate}
+		\end{multicols}
+	
+	Once we introduce algebra to exponents, we can no longer just think of $a^{n}$ as multiplying $a$ $n$ times. Instead, we have to take a more abstract approach.\par
+	
+	First let's take a look at an exponential function and examine its properties.\par
+	
+	\textbf{Example} Graph $f(x) = 2^{x}$ \vspace{1.2in}
+	
+	When we solve exponent problems, one useful strategy is to set the bases equal. Then, you know the exponents also must be equal (why?---\textit{hint: look at the graph above}) and then you can solve.
+	
+	\begin{problem} Solve the following: \end{problem}
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item $2^{x} = 32$
+				\item $3^{y^{2}} = 9$
+				\item $2^{x} = \frac{1}{4}$
+				\item $3^{6x-8} = 3^{x+4}$
+			\end{enumerate}
+		\end{multicols}
+	Now, let's play around with what we know about exponents a little bit more. \par
+	
+	\begin{problem} Solve $2^{8^{x}} = 256^{2^{x}}$ \end{problem} \vspace{.5in}
+	
+	\begin{problem} If $3^{x} = 4$, what is $3^{3x-2}$? \end{problem} \vspace{.5in}
+	
+	\begin{problem} Find solutions to $4^{x} - 33 \cdot 2^{x-1} + 8 = 0$ \end{problem} \vspace{1in}
+	
+	\subsection{Logarithms}
+	People commonly ask, ``if I have \$10 and I get 10\% interest compounded yearly, how many years do I have to wait until my money doubles?'' This question can be answered with \textbf{logarithms}. \par
+	\begin{definition} If $a > 0$ and $a \neq 1$, then: 
+  $$\log_a b = c \text{\hspace{35pt}  and \hspace{35pt}} a^{c} = b$$
+	\end{definition}
+	\begin{problem} Evaluate the following: \end{problem}
+		\begin{multicols}{2}
+			\begin{enumerate}
+				\item $\log_9 81$
+				\item $\log_6 \sqrt[4]{36}$
+				\item $\log_2 \frac{1}{16}$
+				\item $\log_\frac{1}{2} \sqrt{2}$
+			\end{enumerate}
+		\end{multicols}
+	
+	As always, graphing the logarithm function is important.
+	
+	\begin{problem} Graph $f(x) = \log_2 x$. \end{problem} \vspace{1.3in}
+	
+	Is this graph similar to $f(x) = 2^{x}$? \vspace{1in}
+	
+	Let's get familiar with logarithms now. \vspace{1in}
+	
+	\begin{problem} Solve for $x$ in $\log_x 2 = \frac{1}{4}$ \end{problem} \vspace{1in}	
+	\begin{problem} Evaluate $\log_{2\sqrt{2}} \frac{1}{16}$ \end{problem} \vspace{1in}
+	\begin{problem} Solve for $x$ in terms of $y$ in $2y-9 = \log_6 (3x+2)$ \end{problem} \vspace{1in}
+	\begin{problem} Compute $2^{\log_2 28}$ \end{problem} \vspace{1in}
+	Now let's go back to our original question about how long it would take to double our money with 10\% interest compounded yearly. \par
+	\begin{problem} How long will it take for the 10\% to double? \end{problem} \vspace{.7in}
+	
+	\begin{problem} If a sample of radioactive compound decays 34\% over 84 days, what is its half life? \end{problem} \vspace{.7in}
+	 
+	
+	\subsection{Logarithm Properties}
+	You will probably learn these in another class, but it is useful to point them out here since they will pop up all over competition problems:
+
+	\begin{enumerate}
+	    \item $\log_a b^n = n\log_a b$
+	    \item $\log_a b + \log_a c= \log_a bc$
+	    \item $\log_a b - \log_a c= \log_a b/c$
+	    \item $(\log_a b)(\log_cd) = (\log_a d)(\log_cb)$
+	    \item $\frac{\log_ab}{\log_ac} = \log_cb$ (Change of bases)
+	    \item $\log_{a^n} b^n = \log_a b$
+	    \item $\log_ab \log_bc = \log_ac$ (Chain Rule)
+	    \item $\log_ab = \frac{1}{\log_ba}$
+	\end{enumerate}
+	
+	\begin{problem} If $\log x + \log y = 100$, what is $xy$? \end{problem} \vspace{1in}
+	\begin{problem}Solve for $x$ in $\log x + \log x^{3} = 40$ \end{problem} \vspace{1in}
+	\begin{problem} Simplify $\frac{\log_5 15}{\log_{25} 16}$ into one logarithm \end{problem} \vspace{1in}
+	\begin{problem} Simplify $\log_2 81 \cdot \log_3 16$ \end{problem} \vspace{1in}
+	\begin{problem} If $N = (20!)^{4}$, calculate $\frac{1}{\log_2 N} + \frac{1}{\log_3 N} + ... +\frac{1}{\log_{20} N}$ \end{problem} \vspace{1in}
+	\textbf{CHALLENGE} The sequence $a_1, a_2, \ldots$ is geometric with $a_1=a$ and common ratio $r,$ where $a$ and $r$ are positive integers. Given that $\log_8 a_1+\log_8 a_2+\cdots+\log_8 a_{12} = 2006,$ find the number of possible ordered pairs $(a,r).$ \textit{(Source: AIME)}

@@ -1,0 +1,221 @@
+When we talk about games, we usually concern ourselves with the question of \textit{how do I maximize my winnings}? \textbf{Game Theory} is a topic that analyzes exactly how to do this, digging into the structure of games and the behavior of players. Obviously, since game theory is such a large topic, we will only brush the surface of the subject, but will take a look at both one and two-player games. We will see that because of how well game theory describes human behavior, we will be able to use it to look at a real-world application.
+
+
+\subsection{Expected Value}
+Expected Value is exactly what it sounds like---the expected outcome of some sort of event.
+
+\begin{definition}
+The \textbf{Expected Value}, denoted $E$ (or $\mu$), is 
+
+\begin{equation}
+    E = \sum\limits_{i=1}^{n} p_i x_i = p_1x_1+p_2x_2+p_3x_3+\cdots+p_nx_n,
+\end{equation}
+where $x_i$ is the value of the event that occurs with probability $p_i$.
+\end{definition}
+
+\subsection{One-Player Games}
+To get an intuition of expected value, we look at this simple game:
+
+\begin{problem}
+Suppose we play a game so that each time you roll a standard dice, you win the amount of dollars that you roll. What is the expected amount of dollars you win every roll?
+\end{problem}
+
+To solve this problem, we need to figure out our probabilities and values of events. Clearly, each event has a $\frac{1}{6}$ chance of happening, and the events are $\{\$1,\$2,\$3,\$4,\$5,\$6\}$. Therefore, our expected value is
+
+$$E = \frac{1}{6}(\$1+\$2+\$3+\$4+\$5+\$6)=\boxed{\$3.50}$$
+
+It is important to note that when people make games and charge you for playing, they usually make these expected value computations. For example, in our previous problem, since you expect to win $\$3.50$, the person who runs the game will obviously want you to pay more per game, and will likely charge you a higher price to play. 
+
+It is also interesting to note that the expected value of a game is not always the most likely outcome. For example, $\$3.50$ isn't even a possible outcome of our dice game. However, if you play the game over and over again many times, you should find that this dollar amount is your average winnings.
+
+\subsubsection{Monty Hall}
+There is this popular game show that is played like the following. Suppose we have three curtains, 
+
+\begin{itemize}
+    \item Two curtains have goats behind them
+    \item One curtain has a car behind it
+\end{itemize}
+
+The goal of the game is to choose the curtain with the car behind it to win it. We begin the game by having the contestant pick a curtain. Then, the host reveals to the contestant which one of the remaining two curtains has the goat. Now, with two curtains left, the host asks the contestant,
+\begin{center}
+``Do you want to switch to the other curtain, or keep your own?''
+\end{center}
+
+\begin{problem}
+In this game show, should the contestant switch?
+\end{problem}
+
+This game show problem is known as the \textbf{Monty Hall Problem}, named after the host of the original TV show that introduced it. If you are still skeptical about the problem, you aren't alone! In fact, when this problem debuted in the \textit{New York Times} in 1991, a huge debate broke out between high-profile mathematicians. However, with our probabilistic methods, we can determine the answer to the Monty Hall Problem.
+
+\subsection{Two-Player Games}
+Now that we have conquered one-player games, we turn to two-player games. Here is where game theory really gets cool (and complicated at the same time). When you have more than one player, \textit{everybody wants to maximize their benefits}. This underlying assumption is what builds everything for game theory---we need to not only consider what we do, but what other people want to do.
+
+\subsubsection{Tony's Accident\protect\footnote{This section is adapted from ``Introduction to Game Theory'', by S. Schecter and H. Gintis}}
+
+Our first example deals with a scenario where Tony and Steve have gotten into a minor traffic accident. Steve is the victim, who is complaining about some scratches on his car. Normally, I would write out the descriptions of all the scenarios, but to save yourself time and to illustrate how to handle this problem, I will introduce the \textbf{game tree} for this problem:
+
+\begin{center}
+\begin{forest}
+[Tony
+    [Sends \$80[Steve pockets money[(\$-80{,} \$80)]]]
+    [Sends \$40[Steve repairs[(\$-80{,} \$20)]] [Steve doesn't repair[(\$-40{,} \$40)]] ]
+    [Asks for Receipt [Steve repairs[(\$-80{,} \$20)]] [Steve doesn't repair[(\$0{,} \$0)]] ]
+]
+\end{forest}
+\end{center}
+
+When we look at the tree, we see a \textbf{root}, or the starting point, \textbf{nodes} that denote scenarios, and \textbf{terminal nodes} that represent \textbf{payoffs}, e.g. (\$-80{,} \$80); the payoff is read in this case as the first number denoting Tony's winnings and the second number denoting Steve's winnings---(\$-80{,} \$20) would represent Tony losing \$80 and Steve winning \$20. The tree describes the game and its moves perfectly, Tony has three options at the start, to pay Steve the full bill of the repairs, \$80, and let Steve decide what he wants to do with it. Since Steve only gains \$20 of happiness from the repairs, if he uses the \$80 for the repairs, he only gains that amount (while Tony loses \$80); this is the payoff described by (\$-80{,} \$20). You can similarly deduce the scenarios by choosing different paths down the tree. There are several theorems you can learn about trees and nodes, such as the path uniqueness of reaching any node on a tree like such, but that is beyond the scope of this lesson (and although are useful to prove, the proof itself isn't that useful). We instead look to solve this problem, 
+
+\begin{problem}
+What is Tony's best strategy, and what outcome does it lead to?
+\end{problem}
+
+When we solve this problem, we have to keep in mind that \textit{the result depends on the choices of everybody}. What we could do is work our way from top to bottom, visiting every scenario and figuring out what happens, but this is inefficient and very hard to do with big trees. Instead, we do something called \textbf{backwards induction}, which has the following procedures.
+
+\textbf{Backwards Induction:}
+\begin{enumerate}
+    \item Begin at a node $c$ that leads to only terminal nodes
+    \item For whoever's turn it is, determine which node the player will take
+    \item Cross out the ones that will never happen
+    \item Assign the payoff that was chosen to be the payoff of $c$
+    \item Keep working your way up, repeating this process over and over again
+\end{enumerate}
+
+Using this method, our first iteration will lead to the tree:
+\begin{center}
+\begin{forest}
+[Tony
+    [Sends \$80[(\$-80{,} \$80)]]
+    [Sends \$40[(\$-40{,} \$40)]]
+    [Asks for Receipt [(\$-80{,} \$20)]] ]
+]
+\end{forest}
+\end{center}
+
+And one more iteration will make it obvious that Tony's best move is to send \$40, since this will lead to a loss of only \$40, as opposed to \$80.
+
+From our analysis, we see that we can't always get to the best solution for both players. For example, you could argue that (\$0, \$0) is the best for everyone, since nothing happens, but clearly Steve will not let this be the final result. 
+
+It is also important to note before we end this section that backward induction fails if we have the following scenario
+
+\begin{center}
+\begin{forest}
+[Person 1
+    [(\$20{, }\$-30)]
+    [(\$20{, }\$-40)]
+]
+\end{forest}
+\end{center}
+
+As you can see, Person 1 doesn't really care what option he/she chooses, the result is always a gain of \$20. However, I guess if you think Player 1 wants to hurt Player 2, then he/she will choose to be mean and force the \$-40, the worse option, on Player 2. Just remember that in game theory, we usually treat this case as \textit{indeterminate}.
+
+\subsection{Prisoner's Dilemma}
+A very popular two-player game is played like the following. Consider the scenario that two people are captured for their crimes. The police then separate the two criminals, and give them the following options, to confess to the crime and rat out on their partner, or to just keep quiet and not have evidence that the criminals did the crime. Here are the following possibilities, displayed as a \textbf{payoff matrix}.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Person A} \\
+     && Confess & Keep Quiet \\
+     \cline{2-4}
+     \multirow{2}{*}{Person B}&Confess & 10 yrs, 10 yrs & 0 yrs, 20 yrs \\
+     &Keep Quiet & 20 yrs, 0 yrs & 5 yrs, 5 yrs
+\end{tabular}
+\end{center}
+
+Note that the payoffs are written in the order so that the first number corresponds to the person on the left of the table. We see that if they both confess, they both take 10 yrs in prison. If only one person rats out their partner, then the police will let the confess-er leave for free and instead put the full penalty on the partner. If both stay quiet, police can only set their sentence to 5 yrs in prison.
+
+The question now is, what should each player do, and what actually happens at the end?
+
+This problem is famously known as the \textbf{Prisoner's Dilemma}. The formal terms we use for the game are that each player moves according to their \textbf{dominant strategy}, which might not always exist, and the final result is known as the \textbf{Nash Equilibrium}, which may not always exist either.
+
+\subsubsection{Economics}
+The most well-known application of the prisoner's dilemma is in economics, specifically in oligopolies, which are industries that are controlled largely by a few companies (think soda (Pepsi, Coke) or oil (Exxon, Shell)). The reason this problem occurs is that the government prevents \textbf{collusion}, which is the secret agreement between companies to maximize their profits, so companies don't know what each other are going to do. The other reason is that companies \textbf{cheat}, that is, even if companies come to an agreement, people have an incentive to break the agreement to maximize their own profits. Enough with the economics, let's just do a typical oligopoly problem.
+
+\begin{problem}
+Suppose Exxon and Texaco are faced with the following decision, they can either drill one or two new wells to expand their company's production. However, if both companies choose to drill two wells, there is too high of a supply of oil, and prices will drop, leading to less profit earned. If one of the companies decides not to drill a second well, then the company that has two wells will benefit from more sales. We can see this in the payoff matrix:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Exxon} \\
+     && Drill Two & Drill One \\
+     \cline{2-4}
+     \multirow{2}{*}{Texaco}&Drill Two & \$4 million, \$4 million & \$6 million, \$3 million \\
+     &Drill One & \$3 million, \$6 million & \$5 million, \$5 million
+\end{tabular}
+\end{center}
+\end{problem}
+
+Determine each company's \textbf{dominant strategy}, and the \textbf{Nash equilibrium}.
+
+\subsection{Problems}
+\begin{problem}
+Suppose I have a bag of 12 slips of paper in it. Some of the slips have the number 2 on them and the rest of 7. If the expected value of the number shown on a random slip drawn is 3.25, compute the number of 2-slips and 7-slips.
+\end{problem}
+
+\begin{problem}
+Suppose we have a rigged dice so that the probabilities of rolling a number $n$ is $\frac{n}{21}$. If you win the amount that you roll, what is your expected winnings of a single roll?
+\end{problem}
+
+\begin{problem}
+Perhaps a better way to remove the skepticism with the Monty Hall problem is to consider it in a bigger case. Suppose there are 100 curtains---99 goats and one car. After you choose a curtain, the host removes 98 of the curtains, leaving you with the choice of switching or keeping your curtain. What would you do?
+\end{problem}
+
+\begin{problem}
+Let's say we have another Monty Hall like game. Except now, there are 4 curtains, 3 goats and 1 car behind the curtains. On each turn, the host reveals a goat, and gives you the option of switching curtains. What is your best strategy to win the car?
+\end{problem}
+
+\begin{problem}
+Pepsi and Coca-Cola are deciding whether or not to increase their advertising campaign. Their payoff matrix is described by the following:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Pepsi} \\
+     && Many Ads & Few Ads \\
+     \cline{2-4}
+     \multirow{2}{*}{Coke}&Many Ads & \$25 million, \$25 million & \$70 million, \$10 million \\
+     &Few Ads & \$10 million, \$70 million & \$40 million, \$40 million
+\end{tabular}
+\end{center}
+
+Determine the \textbf{dominant strategy} for each company and the \textbf{Nash equilibrium}.
+\end{problem}
+
+\begin{problem}
+Little Kona is a small coffee company that is considering entering a market dominanted by Big Brew. Each company's profit depends on whether Little Kona enters and whether Big Brew sets a high or a low price:
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{tabular}{cc|c|c}
+     &\multicolumn{3}{c}{Big Brew} \\
+     && High Price & Low Price \\
+     \cline{2-4}
+     \multirow{2}{*}{Little Kona}&Enter & \$2 million, \$3 million & \$-1 million, \$1 million \\
+     &Don't Enter & \$0 million, \$7 million & \$0 million, \$2 million
+\end{tabular}
+\end{center}
+
+\begin{enumerate}[label=\alph*)]
+    \item What is Little Kona's dominant strategy?
+    \item What is Big Brew's dominant strategy?
+    \item What is the Nash equilibrium?
+    \item Big Brew threatens Little Kona that ``if you enter, we will set a low price and you will lose money.'' Should Little Kona believe Big Brew's threats and stay out?
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Suppose you accidentally run over your friend's lawn with your car. You need to determine what course of action to minimize your losses. The game tree is displayed below:
+
+\begin{center}
+\begin{forest}
+[You
+    [Send \$1000[Friend repairs[(\$-1000{,} \$1000)]] [Friend asks for help[(\$-2000{,} \$1500)]]]
+    [Offers Help [Friend takes help[(\$-1500{,} \$1500)]] [Friend denies help but wants money[(\$-1000{,} \$1000)]] ]
+]
+\end{forest}
+\end{center}
+\end{problem}
+
+What should be your course of action?

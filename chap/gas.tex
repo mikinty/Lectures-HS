@@ -1,0 +1,232 @@
+\subsection{Introduction}
+Gases are one of the fundamental states of matter, and one that is generally easy to theorize, which is why it is usually taught first in chemistry courses. We look at properties of gases through historical experiments, and see how a model can be derived to describe gases in general. We also study other equations that describe gas behavior, and finish with problem solving skills that will aid your future endeavors in gas related chemistry.
+
+\subsection{Laws}
+\subsubsection{Boyle's Law}
+\begin{equation}
+    \boxed{PV = k}
+\end{equation}
+Boyle's law explains the relationship between \textbf{pressure} and \textbf{volume}, and says they are \textit{inversely} related.
+\subsubsection{Charles' Law}
+\begin{equation}
+    \boxed{V = bT}
+\end{equation}
+Charles' law shows that the \textbf{volume} of a gas at constant pressure increases \textit{linearly} with the \textbf{temperature}, where $T$ is the temperature in \textit{Kelvins}.
+\subsubsection{Avogadro's Law}
+\begin{equation}
+    \boxed{V = an}
+\end{equation}
+Avogadro's law states that for a gas at constant temperature and pressure, the \textbf{volume} is directly proportional  number of \textbf{moles} of gas.
+\subsubsection{Gay-Lussac Law}
+\begin{equation}
+    \boxed{\frac{P}{T} = k}
+\end{equation}
+Gay-Lussac law states that the \textbf{pressure} of a gas of fixed mass and fixed volume is directly proportional to the gas's absolute \textbf{temperature}.
+
+\subsubsection{Ideal Gas Law}
+From the contribution of these scientists, we can combine them to create the \textbf{ideal gas law}
+\begin{equation}
+    \boxed{PV = nRT},
+\end{equation}
+where $P$ is the pressure, $V$ is the volume, $n$ is the number of moles, $T$ is the absolute temperature (in Kelvins), and $R$ is a gas constant that changes depending on what system of units are being used.
+
+The reason that this law is called \textit{ideal} is because it is most accurately obeyed at certain conditions, and make assumptions.
+
+\noindent \textbf{Assumptions:}
+\begin{itemize}
+    \item Gas particles do not take up volume
+    \item Gas particles do not attract each other
+\end{itemize}
+
+\noindent \textbf{Conditions best for ideal:}
+\begin{itemize}
+    \item \textbf{Low Pressure ($<1$ atm):} volume of gas is so big that the volume of the gas particles is relatively small
+    \item \textbf{High Temperatures:} molecules move so fast that interparticle interactions are insignificant
+\end{itemize}
+
+\begin{problem}
+What is the most ideal gas?
+\end{problem}
+
+\subsubsection{Density of a Gas}
+It is notable that $\frac{m}{V}$ is the density of a gas, so if we plug in that $n = m/MM$ (mass/molar mass) and solve for the density in the ideal gas law equation, we can derive
+\begin{align*}
+    PV &= \left(\frac{m}{MM}\right)RT \\
+    \frac{m}{V} = \Aboxed{D &= \frac{P \times MM}{RT}}
+\end{align*}
+
+\subsection{Other Gas Laws}
+\subsubsection{Dalton's Law of Partial Pressure}
+\begin{equation}
+    \boxed{P_{\text{Total}} = P_1+P_2+\cdots+P_n}
+\end{equation}
+Dalton tells us that the individual pressures of gases contribute separately to the total pressure of all the gases. In addition, it shows that pressure is only dictated by the total number of moles of gas, not what gases are present.
+
+\subsubsection{Graham's Law of Effusion}
+\begin{equation}
+    \boxed{\frac{\text{Rate Effusion Gas 1}}{\text{Rate Effusion Gas 2}} = \sqrt{\frac{\text{Molar Mass Gas 2}}{\text{Molar Mass Gas 1}}}}
+\end{equation}
+Graham's Law of Effusion shows us that heavier gases effuse at slower rates than lighter gases. 
+
+\begin{problem}
+I have 4 balloons, filled with H, He, O, and Ne respectively. List the order of the volume of the balloons in increasing volume after 6 hrs.
+\end{problem}
+
+\subsubsection{Kinetic Molecular Theory}
+Kinetic Molecular Theory (KMT) gives us a way to build a model to describe gases. There are several postulates taken to build the theory
+\begin{itemize}
+    \item Gases are composed of a large number of particles that behave like hard, spherical objects in a state of constant, random motion.
+    \item These particles move in a straight line until they collide with another particle or the walls of the container.
+    \item These particles are much smaller than the distance between particles. Most of the volume of a gas is therefore empty space.
+    \item There is no force of attraction between gas particles or between the particles and the walls of the container.
+    \item Collisions between gas particles or collisions with the walls of the container are perfectly elastic. None of the energy of a gas particle is lost when it collides with another particle or with the walls of the container.
+    \item The average kinetic energy of a collection of gas particles depends on the temperature of the gas and nothing else.
+\end{itemize}
+
+\noindent With KMT, we can derive equations such as the \textbf{Root Mean Square}, which tells us
+\begin{equation}
+    \boxed{u_{\text{rms}} = \sqrt{\frac{3RT}{M}}},
+\end{equation}
+where $M$ is the mass of the gas in kilograms, and the \textbf{Average Kinetic Energy} of the gas
+\begin{equation}
+    \boxed{\text{Kinetic Energy}_{\text{avg}} = \frac{3}{2}RTn}
+\end{equation}
+\subsection{Real Gas Law}
+In order to make our gas model more accurate, we have to assume more real properties of gases. Namely, 
+
+\noindent \textbf{Assumptions:}
+\begin{itemize}
+    \item \textbf{Attractions decrease the pressure observed}: when particles come close together, attractive forces occur and cause the particles to hit the wall slightly less often 
+    \item \textbf{Molecules take up volume}: decreases the total amount of volume available for gases
+\end{itemize}
+
+With these factors taken into account, we can derive the \textbf{van der Waals equation}, which is a more accurate model for gases.
+\begin{equation}
+    \boxed{\left(P_{\text{obs}}+a\left(\frac{n}{V}\right)^2\right)(V-nb) = nRT}
+\end{equation}
+
+Notice how these corrections help account for more realistic properties of gases.
+
+\subsection{Problem-Solving}
+The purpose of this section is to give some problems that utilizes concepts of gas laws and give practice to mastering their uses.
+
+\subsubsection{Conversions}
+Before we solve some problems, it's important to know how to convert among the many units used in gas law problems.
+
+\subsubsection{Constants}
+\begin{center}
+\begin{tabular}{c|c|c}
+     Name & Value & Uses \\
+     \hline
+     Universal & \SI{8.314}{\J\per\K\per\mol} & In fundamental SI units\\
+     Torr, mmHg & \SI{62.36}{\L* mmHg \per \K\per\mol} &\\
+     Atmospheres (atm) & \SI{0.08206}{\L*\atm \per \K\per\mol} &\\
+     Pascals & 8.314 \SI{8.314}{\L*\kPa\per\K\per\mol}& \\
+\end{tabular}
+\end{center}
+
+Although the values of the gas constants aren't terribly important, it is useful to know them for solving problems in different units.
+
+\subsubsection{Pressure}
+$$\boxed{\SI{1}{\atm}=\SI{101.325}{\kPa}=\SI{760}{mmHg}=\SI{14.696}{psi}}$$
+
+\subsubsection{Temperature}
+When you do gas law problems, you \textbf{must use Kelvins}. This is because Kelvins is the only unit of temperature that is linearly related to absolute zero. Here are some conversions, 
+\begin{itemize}
+    \item \degree C = K - 273.15
+    \item \degree F = $\frac{9}{5}\text{C}+32$
+\end{itemize}
+
+\subsubsection{Standard Temperature and Pressure}
+Standard Temperature and Pressure (STP) are a set of universal conditions determined by scientists. This setting is useful because it allows many scientists to use identical conditions in their experiments for ease of comparison. STP is also used in many gas law problems, and is defined as
+\begin{flushleft}
+\textbf{Standard Temperature and Pressure:} 0\degree C, 1 atm
+\end{flushleft}
+It turns out that there are exactly 22.42 L of one molar volume of an ideal gas at STP.
+\subsubsection{Problems}
+\begin{problem}
+The pressure of a basketball at 20\degree C is 10 psi. What is the pressure of the basketball at 10\degree C?
+\end{problem}
+
+\begin{problem}
+A gas sample occupies 350. mL at 546 mm Hg. What volume does the gas occupy at 652 mm Hg?
+\end{problem}
+
+\begin{problem}
+I have a gas at 30\degree C. If I increase the temperature of the gas to 90\degree C, what is the ratio of the initial volume to the new volume of the gas?
+\end{problem}
+
+\begin{problem}
+A 5.0 L sample of gas is collected at 400. mmHg at 727\degree C. What is the volume of the gas if it were cooled down to 77\degree C and the pressure increased to 700.mmHg?
+\end{problem}
+
+\begin{problem}
+A sample of 5.0 mol gas at 1.0 atm is expanded at constant temperature from 10 L to 15 L. Find the final pressure.
+\end{problem}
+
+\begin{problem}
+A gas sample contains 0.1 mol of oxygen and 0.4 mol of nitrogen. If the sample is at STP, what is the partial pressure from the nitrogen?
+\end{problem}
+
+\begin{problem}
+Which of the following gases deviates the most from the Ideal Gas Law?
+\begin{enumerate}[label=(\alph*)]
+\item Water vapor
+\item Hydrogen gas
+\item Helium 
+\item Gaseous carbon atoms
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+What is the coldest theoretical temperature of any substance?
+\end{problem}
+
+\begin{problem}
+Three gases, \ce{O_2}, \ce{CO_2}, and \ce{He} are at a constant temperature. List the gases in order of increasing average molecular speed.
+\end{problem}
+
+\clearpage
+\begin{problem}
+At STP, a \SI{7}{\L} container will hold \SI{12}{\g} of which of the following gases?
+\begin{enumerate}[label=(\alph*)]
+\item \ce{F_2}
+\item \ce{Cl_2}
+\item \ce{Br_2}
+\item \ce{N_2}
+\item \ce{NO}
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+A hydrocarbon gas with the empirical formula \ce{CH_2} has a density of \SI{1.3}{\g/\L} at STP. What is the most likely molecular formula for this hydrocarbon?
+\end{problem}
+
+\begin{problem}
+Suppose 6.0 g of ethane is burned. What is the volume of \ce{CO_2} that is produced if it is formed at STP?
+\end{problem}
+
+\begin{problem}
+Explain the conditions that cause deviations in predictions from the ideal gas law.
+\end{problem}
+
+\begin{problem}
+A sample of pure methane (\ce{CH_4}), is found to effuse through a porous barrier in 1.5 min. Under the same conditions, an equal number of molecules of an unknown gas effuses through the barrier in 4.73 min. What is the molar mass of the unknown gas?
+\end{problem}
+
+\begin{problem}
+In an experiment, when an evacuated flask is filled with argon gas, its mass increases by 3.224 g. When the same flask is filled with an unknown gas, the mass increases by 8.102 g. Based on this information, what is the molar mass of the unknown gas?
+\end{problem}
+
+\begin{problem}
+The air in a room is normally 20.0\degree C and at 760 mmHg. Given that the average molar mass of air is 28.69 g/mol, calculate the density of room temperature air.
+\end{problem}
+
+\begin{problem}
+This problem deals with a recent event in sports.
+
+\begin{enumerate}[label=(\alph*)]
+    \item One of the defenses presented by Bill Belichik and the Patriots in the infamous ``deflategate'' was that the low temperatures during the football game may have caused the footballs to be deflated. Explain using gas laws why this could be the case.
+    \item Suppose that the footballs were inflated to NFL grade at a room temperature of 20\degree C. Outside, the game was played at $-10\degree$ C. How much of a volume difference is caused by this temperature change?
+\end{enumerate} 
+\end{problem}

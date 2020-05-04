@@ -1,0 +1,212 @@
+Pascal's Triangle may almost seem like an accident---a simple arithmetic rule for building a triangle structure of numbers. In this lecture, we'll look at what the triangle looks like, its properties, and find out that deep within, the innocent-looking triangle really hides a host of much more interesting facts.
+
+\subsection{The Triangle}
+As you probably already know, the first few rows of Pascal's Triangle look like the following:
+
+\begin{center}
+\begin{tabular}{>{$n=}l<{$\hspace{12pt}}*{13}{c}}
+0 &&&&&&&1&&&&&&\\
+1 &&&&&&1&&1&&&&&\\
+2 &&&&&1&&2&&1&&&&\\
+3 &&&&1&&3&&3&&1&&&\\
+4 &&&1&&4&&6&&4&&1&&\\
+5 &&1&&5&&10&&10&&5&&1&\\
+6 &1&&6&&15&&20&&15&&6&&1
+\end{tabular}
+\end{center}
+
+The rules for building the triangle are simple: given any spot, add the two numbers directly above it. If it helps, you can imagine zeros in the spots where there are no numbers written.
+
+\begin{problem}
+Find the $n=7$ and $n=8$ rows of Pascal's Triangle.
+\end{problem}
+
+\subsection{Wait a minute...}
+When we look at the lower rows of Pascal's Triangle, we might start to notice something...the numbers in this triangle don't seem to be random. First of all, they are symmetric in every row, and then, they seem to be related to some combinatoric property we already know. Let us take the fifth row for example.
+
+We have 
+$$1\quad5\quad10\quad10\quad5\quad1$$
+which looks exactly like the combinations
+$$\binom{5}{0}\quad\binom{5}{1}\quad\binom{5}{2}\quad\binom{5}{3}\quad\binom{5}{4}\quad\binom{5}{5}.$$
+
+Wow have we made some amazing discovery? Let us try this problem that we already know how to do:
+\clearpage
+\begin{problem}
+Find the number of ways to walk from point $A$ to point $B$ and point $A$ to point $C$.
+\begin{center}
+    \begin{tikzpicture}
+    \draw (0,5) --(0,0) node[left, below]{$A$};
+    \draw (1,4) --(1,0); 
+    \draw (2,3) --(2,0); 
+    \draw (3,2) --(3,0); 
+    \draw (4,1) --(4,0); 
+    \draw (0,0)--(5,0);
+    \draw (0,1)--(4,1) node[right, above]{$C$};
+    \draw (0,2)--(3,2);
+    \draw (0,3)--(2,3) node[right, above]{$B$};
+    \draw (0,4)--(1,4);
+    \end{tikzpicture}
+\end{center}
+\end{problem}
+
+\begin{problem}
+Find the general formula for the number in the $n^{\text{th}}$ row, $r$ spaces from the left. (Assume the first row is the 0 row)
+\end{problem}
+
+\subsection{Pascal's Identity}
+From our new combination-version of Pascal's Triangle, we can see certain sums, for example:
+
+\begin{itemize}
+    \item $\binom{1}{0}+\binom{1}{1} = \binom{2}{1}$
+    \item $\binom{5}{3}+\binom{5}{4} = \binom{6}{4}$
+    \item $\binom{7}{2}+\binom{7}{3} = \binom{8}{3}$
+\end{itemize}
+
+Given this pattern (which you should check), can you guess what $a$ and $b$ are in 
+
+$$\binom{147}{24}+\binom{147}{25} = \binom{a}{b}?$$
+
+\begin{problem}
+Try to guess a general formula from the combination sums we have seen.
+\label{pr:3}
+\end{problem}
+
+As you can probably guess, the identity from Problem \ref{pr:3} can be generalized for any $n$, and we can prove this with algebra. 
+
+Starting with our claim that
+$$\binom{n-1}{r-1}+\binom{n-1}{r} = \binom{n}{r}$$
+We can expand the right side by applying the definition of the \begin{align*}
+\frac{(n-1)!}{(r-1)!(n-1-(r-1))!}+\frac{(n-1)!}{r!(n-1-(r))!} &= \frac{r(n-1)!}{r!(n-r)!}+\frac{(n-r)(n-1)!}{r!(n-r)!} \\
+&= \frac{(n-1)!(r+(n-r))}{r!(n-r)!} \\
+&= \frac{n!}{r!(n-r)!} = \binom{n}{r}.
+\end{align*}
+and we have successfully proved our claim. This identity 
+$$\boxed{\binom{n-1}{r-1}+\binom{n-1}{r} = \binom{n}{r}}$$
+is known as \textbf{Pascal's Identity}.
+
+\subsection{The Sum of Rows}
+Let's try adding up the numbers in each row of Pascal's Triangle!
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+         Row & Sum \\
+         \hline
+         0 & 1 = 1\\
+         1 & 1+1=2 \\
+         2& 1+2+1=4 \\
+         3& 1+3+3+1 =8 \\
+         4 & 1+4+6+4+1 =16 \\
+         5 & 1+5+10+10+5+1 = 32
+    \end{tabular}
+    \label{tab:sum}
+\end{table}
+
+Hopefully you get the idea now...the sums look like for a row $n$, the sum of the elements in the row is $2^n$. Combining this with the fact that the elements of the rows are really combinations, we can write:
+$$\sum\limits_{i=0}^{n} \binom{n}{i} = \binom{n}{0}+\binom{n}{1}+\cdots+\binom{n}{n} = 2^n$$
+
+Hm...it seems like using algebra would be very ugly for proving this statement, let's try using counting methods instead.
+
+\begin{problem}
+Use a grid-walking argument to prove our statement.
+\end{problem}
+
+\begin{problem}
+Use a pure counting argument to prove our statement.
+\end{problem}
+
+\subsection{The Binomial Theorem}
+Let's start with a \textbf{binomial}, a polynomial with two terms, $x+y$, and find some powers of this binomial
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+         $n$ & $(x+y)^n$ \\
+         \hline
+         1 & $x+y$ \\
+         2 & $x^2+2xy+y^2$ \\
+         3 & $x^3+3x^2y+3xy^2+y^3$ \\
+         4 & $x^4+4x^3y+6x^2y^2+4xy^3+y^4$
+    \end{tabular}
+    \label{tab:binom}
+\end{table}
+
+After all of our observations today, it shouldn't be hard to notice that the coefficients are described by Pascal's Triangle! (combinations) In general, we have
+
+$$(x+y)^n = \binom{n}{0}x^n y^0 + \binom{n}{1}x^{n-1}y^1 + \binom{n}{2}x^{n-2}y^2 + \cdots + \binom{n}{n-1}x^1 y^{n-1} + \binom{n}{n}x^0 y^n$$
+
+which can be written in summation notation,
+
+$$(x+y)^{n}=\sum^{n}_{i=0}\displaystyle\binom{n}{i}x^{n}y^{n-i}.$$
+
+This result of expanding binomials to the $n^{\text{th}}$ power is known as the \textbf{binomial theorem}.
+
+So why does the binomial theorem work? If you think about how you get a certain term, let's say we're looking for the $x^7y^3$ term in $(x+y)^{10}$, we can write out the expression like
+$$\underbrace{(x+y)(x+y)\cdots(x+y)}_{\text{10 binomials}}$$
+
+and in order to make our term, we need to choose 7 $x$ and 3 $y$ from our 10 binomials. That's just the same as $\binom{10}{7}$ (or $\binom{10}{3}$)---so we can easily find our coefficient to be $\binom{10}{3} = 120$.
+
+\begin{problem}
+Given $\displaystyle (x + y)^{10}$, find:
+
+\begin{itemize}
+    \item The coefficient of the $x^{4}y^{6}$ term
+    \item The sum of the coefficients
+\end{itemize}
+\end{problem}
+
+\begin{problem}
+Given $\displaystyle (2x - 3y)^{17}$, find:
+
+\begin{itemize}
+    \item The coefficient of the $x^{6}y^{11}$ term
+    \item The sum of the coefficients
+\end{itemize}
+\end{problem}
+
+\subsection{Problems}
+
+\begin{problem}
+Try to prove the following identities using counting and algebraic methods:
+
+\begin{itemize}
+    \item $\left(\binom{n}{0}+\binom{n}{1}+\cdots+\binom{n}{n} \right)^2 = \binom{2n}{0}+\binom{2n}{1}+\cdots+\binom{2n}{2n}$
+    \item $\binom{n}{0}-\binom{n}{1}+\binom{n}{2}-\cdots+(-1)^n \binom{n}{n}=0$
+    \item $\binom{n-1}{r-1} = \frac{r}{n}\binom{n}{r}$
+    \item $\binom{2n}{2} = 2\binom{n}{2}+n^2$
+\end{itemize}
+\end{problem}
+
+\begin{problem}
+Compute $$\binom{99}{97}+\binom{99}{98}$$
+\end{problem}
+
+\begin{problem}
+Find the coefficient of the term with $y^2$ in the expansion of $(x-3y^2)^6$
+\end{problem}
+
+\begin{problem}
+Find the following:
+
+\begin{itemize}
+    \item $\left(x+\frac{1}{x}\right)^2$
+    \item $\left(x+\frac{1}{x}\right)^3$
+    \item $\left(x+\frac{1}{x}\right)^4$
+\end{itemize}
+
+Now given that $x+\frac{1}{x}=-3$, find $x^2+\frac{1}{x^2}, x^3+\frac{1}{x^3}, x^4+\frac{1}{x^4}$.
+\end{problem}
+
+\begin{problem}
+Find the constant term in the expansion of 
+$$\left(x^2-\frac{2}{x}\right)^9$$
+\end{problem}
+
+\begin{problem}
+In Pascal's Triangle, each entry is the sum of the two entries above it. In which row of Pascal's Triangle do three consecutive entries occur that are in the ratio $3: 4: 5$? \textit{Source: AIME}
+\end{problem}
+
+\begin{problem}
+Given that the definition of $e$ is 
+$$e = \lim_{n\to\infty} \left(1 + \frac{1}{n}\right)^n,$$
+use the binomial theorem to expand out the terms and find its series. You will have to do the limit as $n$ goes to $\infty$, which you won't know how to do formally, but try your best.
+\end{problem}

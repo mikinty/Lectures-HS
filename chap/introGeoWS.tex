@@ -1,0 +1,25 @@
+\subsection{Drawing}
+Try to draw the following:
+
+\begin{enumerate}
+    \item Given a point $P$, draw all points that are exactly 2 inches away from $P$. What shape is this? (Note: the \textbf{locus} of points is a set of points that satisfies a particular condition. E.g. for this problem, we are finding the locus of points that have distance 2 in from $P$)
+    \item Draw three points and make them
+        \begin{enumerate}
+            \item All \textit{collinear} (lie on a single line)
+            \item Not all \textit{collinear}. If you connect all of these points to each other, how many lines do you get? (is it in the form of $\binom{n}{2}$?) Do you create an enclosed region? What is this shape called?
+            \item In general, if you have $n$ non-collinear points, how many distinct line segments can you draw?
+            \item $^{\ast \ast \ast}$ A \textit{diagonal} of a polygon is defined to be a line from a vertex to another distinct vertex that is not adjacent to it (or else it'd just be the side). Given what we just did in the part before, derive the formula for the number of diagonals in a $n$-sided convex polygon.
+        \end{enumerate}
+    \item Draw a \textit{convex} quadrilateral---a four-sided shape with all interior angles $<180^{\circ}$
+    \item Draw a \textit{concave} quadrilateral---a four-sided shape with one interior angle $>180^{\circ}$
+    \item Is it possible to draw a concave triangle? (\textit{Hint: Look at proof \#1 and think about the definition of a concave polygon})
+\end{enumerate}
+
+\subsection{Proofs}
+Let's try proving some basic facts. For these proofs, you will need to know the basic angle theorems (opposite side angles are equal, parallel line transversals) and the triangle congruence theorems (SSS, SAS, AAS).
+\begin{enumerate}
+    \item Prove that the interior angles of a triangle sum to $180^{\circ}$ \textit{(Hint: draw line $\overline{AB}$, and draw a line parallel to $\overline{AB}$ that goes through $C$)}
+    \item Prove that the sum of the interior angles of \textit{any} $n$-sided polygon (convex or concave) sum to $(n-2)180^{\circ}$. (\textit{Hint: What shape do we know the sum of the angles of?})
+    \item Prove that if a triangle has 2 equal sides, it must also have two equal angles. This triangle is called isosceles because it has two equal sides. (\textit{Hint: bisect the angle that is not equal to the other two. You should get two congruent triangles.}) Once you prove this, you should be able to prove the converse (if two angles are equal in a triangle, then two sides must also be equal) very easily.
+    \item Given that the area of a triangle is $\frac{1}{2} b h$, where $b$ is the base and $h$ is the height, derive the formula for a trapezoid, which is $\frac{b_1+b_2}{2}h$, where $b_1, b_2$ are the two bases, and $h$ is the height. (\textit{Hint: Split the trapezoid into two triangles})
+\end{enumerate}
